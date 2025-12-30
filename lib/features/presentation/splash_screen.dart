@@ -2,6 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+
+import '../../core/theme/theme_service.dart';
 
 class NeonYearScreen extends StatefulWidget {
   const NeonYearScreen({Key? key}) : super(key: key);
@@ -31,8 +34,10 @@ class _NeonYearScreenState extends State<NeonYearScreen>
 
   @override
   Widget build(BuildContext context) {
+    final themeService = GetIt.instance<ThemeService>();
+
     return Scaffold(
-      backgroundColor: const Color(0xFF0a0e27),
+      backgroundColor: themeService.colors.background,
       body: Stack(
         children: [
           // Animated neon lines background
@@ -63,16 +68,16 @@ class _NeonYearScreenState extends State<NeonYearScreen>
                 NeonText(
                   text: 'Year of',
                   fontSize: 48,
-                  color: const Color(0xFF00e5ff),
-                  glowColor: const Color(0xFF00e5ff),
+                  color: themeService.colors.neonPrimary,
+                  glowColor: themeService.colors.neonPrimary,
                 ),
                 const SizedBox(height: 10),
                 // Alisha text
                 NeonText(
                   text: 'Alisha',
                   fontSize: 56,
-                  color: const Color(0xFFff0080),
-                  glowColor: const Color(0xFFff0080),
+                  color: themeService.colors.neonSecondary,
+                  glowColor: themeService.colors.neonSecondary,
                   fontWeight: FontWeight.bold,
                 ),
                 const SizedBox(height: 40),
@@ -167,10 +172,12 @@ class NeonLinesPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    final themeService = GetIt.instance<ThemeService>();
+
     final curves = [
       // Top area curves
       NeonCurve(
-        color: const Color(0xFF00e5ff),
+        color: themeService.colors.neonPrimary,
         startX: -50,
         startY: 50,
         controlX1: 10,
@@ -181,7 +188,7 @@ class NeonLinesPainter extends CustomPainter {
         endY: 0,
       ),
       NeonCurve(
-        color: const Color(0xFFff0080),
+        color: themeService.colors.neonSecondary,
         startX: -50,
         startY: 190,
         controlX1: 50,
@@ -192,7 +199,7 @@ class NeonLinesPainter extends CustomPainter {
         endY: 0,
       ),
       NeonCurve(
-        color: const Color(0xFFccff00),
+        color: themeService.colors.neonAccent,
         startX: -50,
         startY: 300,
         controlX1: 100,
@@ -203,7 +210,7 @@ class NeonLinesPainter extends CustomPainter {
         endY: 0,
       ),
       NeonCurve(
-        color: const Color(0xFFccff00),
+        color: themeService.colors.neonAccent,
         startX: -50,
         startY: 250,
         controlX1: size.width * 0.35,
@@ -214,7 +221,7 @@ class NeonLinesPainter extends CustomPainter {
         endY: 100,
       ),
       NeonCurve(
-        color: const Color(0xFF00e5ff),
+        color: themeService.colors.neonPrimary,
         startX: -80,
         startY: 220,
         controlX1: size.width * 0.35,
@@ -225,20 +232,64 @@ class NeonLinesPainter extends CustomPainter {
         endY: 200,
       ),
       NeonCurve(
-        color: const Color(0xFFccff00),
+        color: themeService.colors.neonAccent,
         startX: -50,
         startY: 300,
         controlX1: size.width * 0.2,
-        controlY1: 260,
-        controlX2: size.width * 0.8,
-        controlY2: 20,
+        controlY1: 300,
+        controlX2: size.width * 0.4,
+        controlY2: -100,
         endX: size.width + 120,
         endY: 130,
+      ),
+      NeonCurve(
+        color: themeService.colors.neonSecondary,
+        startX: -40,
+        startY: 150,
+        controlX1: size.width * 0.45,
+        controlY1: 220,
+        controlX2: size.width * 0.6,
+        controlY2: 160,
+        endX: size.width + 40,
+        endY: 0,
+      ),
+      NeonCurve(
+        color: themeService.colors.neonAccent,
+        startX: size.width - 50,
+        startY: 0,
+        controlX1: size.width - 120,
+        controlY1: 100,
+        controlX2: size.width - 20,
+        controlY2: 100,
+        endX: size.width + 70,
+        endY: 150,
+      ),
+      NeonCurve(
+        color: themeService.colors.neonAccent,
+        startX: size.width - 200,
+        startY: 0,
+        controlX1: size.width - 120,
+        controlY1: 100,
+        controlX2: size.width - 20,
+        controlY2: 100,
+        endX: size.width + 70,
+        endY: 120,
+      ),
+      NeonCurve(
+        color: themeService.colors.neonSecondary,
+        startX: size.width - 200,
+        startY: 0,
+        controlX1: size.width - 50,
+        controlY1: 50,
+        controlX2: size.width - 20,
+        controlY2: 100,
+        endX: size.width + 70,
+        endY: 250,
       ),
 
       // Bottom area curves
       NeonCurve(
-        color: const Color(0xFFff0080),
+        color: themeService.colors.neonSecondary,
         startX: -100,
         startY: size.height - 180,
         controlX1: size.width * 0.3,
@@ -249,7 +300,7 @@ class NeonLinesPainter extends CustomPainter {
         endY: size.height - 170,
       ),
       NeonCurve(
-        color: const Color(0xFFccff00),
+        color: themeService.colors.neonAccent,
         startX: -50,
         startY: size.height - 100,
         controlX1: size.width * 0.4,
@@ -260,7 +311,7 @@ class NeonLinesPainter extends CustomPainter {
         endY: size.height - 90,
       ),
       NeonCurve(
-        color: const Color(0xFF00e5ff),
+        color: themeService.colors.neonPrimary,
         startX: -80,
         startY: size.height - 240,
         controlX1: size.width * 0.25,
@@ -271,7 +322,7 @@ class NeonLinesPainter extends CustomPainter {
         endY: size.height - 230,
       ),
       NeonCurve(
-        color: const Color(0xFFff0080),
+        color: themeService.colors.neonSecondary,
         startX: -120,
         startY: size.height - 60,
         controlX1: size.width * 0.35,
@@ -282,7 +333,7 @@ class NeonLinesPainter extends CustomPainter {
         endY: size.height - 50,
       ),
       NeonCurve(
-        color: const Color(0xFFccff00),
+        color: themeService.colors.neonAccent,
         startX: -60,
         startY: size.height - 150,
         controlX1: size.width * 0.5,
@@ -293,7 +344,7 @@ class NeonLinesPainter extends CustomPainter {
         endY: size.height - 140,
       ),
       NeonCurve(
-        color: const Color(0xFF00e5ff),
+        color: themeService.colors.neonPrimary,
         startX: -90,
         startY: size.height - 130,
         controlX1: size.width * 0.3,
@@ -302,31 +353,8 @@ class NeonLinesPainter extends CustomPainter {
         controlY2: size.height - 90,
         endX: size.width + 90,
         endY: size.height - 120,
-      ),
+      )
 
-      // Additional crossing lines
-      NeonCurve(
-        color: const Color(0xFFff0080),
-        startX: -40,
-        startY: 190,
-        controlX1: size.width * 0.45,
-        controlY1: 220,
-        controlX2: size.width * 0.6,
-        controlY2: 160,
-        endX: size.width + 40,
-        endY: 180,
-      ),
-      NeonCurve(
-        color: const Color(0xFFccff00),
-        startX: -70,
-        startY: 60,
-        controlX1: size.width * 0.5,
-        controlY1: 90,
-        controlX2: size.width * 0.7,
-        controlY2: 40,
-        endX: size.width + 70,
-        endY: 70,
-      ),
     ];
 
     for (var curve in curves) {
@@ -399,6 +427,7 @@ class NeonCurve {
 class NeonRocketPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
+    final themeService = GetIt.instance<ThemeService>();
     final cx = size.width / 2;
     final cy = size.height / 2;
 
@@ -412,7 +441,7 @@ class NeonRocketPainter extends CustomPainter {
     _drawNeonShape(
       canvas,
       leftFinPath,
-      const Color(0xFFccff00),
+      themeService.colors.neonAccent,
     );
 
     final rightFinPath = Path();
@@ -424,7 +453,7 @@ class NeonRocketPainter extends CustomPainter {
     _drawNeonShape(
       canvas,
       rightFinPath,
-      const Color(0xFFccff00),
+      themeService.colors.neonAccent,
     );
 
     // Draw rocket body (cyan)
@@ -438,7 +467,7 @@ class NeonRocketPainter extends CustomPainter {
     _drawNeonShape(
       canvas,
       bodyPath,
-      const Color(0xFF00e5ff),
+      themeService.colors.neonPrimary,
     );
 
     // Draw window (magenta circle)
@@ -451,7 +480,7 @@ class NeonRocketPainter extends CustomPainter {
     _drawNeonShape(
       canvas,
       windowPath,
-      const Color(0xFFff0080),
+      themeService.colors.neonSecondary,
     );
 
     // Draw flame (yellow-green)
@@ -464,7 +493,7 @@ class NeonRocketPainter extends CustomPainter {
     _drawNeonShape(
       canvas,
       flamePath,
-      const Color(0xFFccff00),
+      themeService.colors.neonAccent,
     );
 
     final flamePath2 = Path();
@@ -476,7 +505,7 @@ class NeonRocketPainter extends CustomPainter {
     _drawNeonShape(
       canvas,
       flamePath2,
-      const Color(0xFFccff00),
+      themeService.colors.neonAccent,
     );
 
     final flameCenter = Path();
@@ -489,7 +518,7 @@ class NeonRocketPainter extends CustomPainter {
     _drawNeonShape(
       canvas,
       flameCenter,
-      const Color(0xFFccff00),
+      themeService.colors.neonAccent,
     );
   }
 

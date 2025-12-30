@@ -3,12 +3,10 @@ part of 'init_dependencies.dart';
 final serviceLocator = GetIt.instance;
 
 Future<void> initDependencies() async {
-  _initThemeService();
+  serviceLocator.registerSingleton<ThemeService>(ThemeService());
+  await serviceLocator<ThemeService>().init();
 }
 
-void _initThemeService() {
-  serviceLocator.registerSingleton<ThemeService>(ThemeService());
-  serviceLocator<ThemeService>().init();
-}
+
 
 

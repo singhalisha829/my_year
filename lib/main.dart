@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         }
 
         return MaterialApp(
-          title: 'Flutter Demo',
+          title: 'Year of Alisha',
           theme: themeData,
           debugShowCheckedModeBanner: false,
           home: const NeonYearScreen(),

@@ -1,376 +1,164 @@
 import 'package:flutter/material.dart';
-
+import 'package:year_of_alisha/core/theme/theme_extension.dart';
 import '../const/sizes.dart';
 import 'app_pallete.dart';
 
-/// AppTheme manages the application's theme configurations
-/// Provides light, dark and custom theme modes with consistent styling
 class AppTheme {
-  // MARK: - Common Theme Elements
+  // ───────────────── COMMON ─────────────────
 
-  /// Creates a standard border with customizable color
-  /// Used for input fields and other bordered components
-  static OutlineInputBorder _createBorder({
-    Color color = AppPalette.primary,
-    double width = 2,
-    double borderRadius = 4,
-  }) {
+  static OutlineInputBorder _border(Color color) {
     return OutlineInputBorder(
-      borderSide: BorderSide(color: color, width: width),
-      borderRadius: BorderRadius.circular(borderRadius),
+      borderRadius: BorderRadius.circular(6),
+      borderSide: BorderSide(color: color, width: 1),
     );
   }
 
-  /// Shared text theme used across all theme modes
-  /// Establishes consistent typography with the IBM Plex Sans font family
-  static TextTheme _createBaseTextTheme({Color bodyTextColor = Colors.black}) {
-    return ThemeData.light().textTheme.copyWith(
-      bodySmall: TextStyle(fontSize: 11, color: bodyTextColor),
-      bodyMedium: TextStyle(fontSize: 12, color: bodyTextColor),
-      bodyLarge: TextStyle(fontSize: 14, color: bodyTextColor),
-
-      displaySmall: TextStyle(fontSize: 11, fontWeight: FontWeight.w500, color: bodyTextColor),
-      displayMedium: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: bodyTextColor),
-      displayLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: bodyTextColor),
-
-      titleSmall: TextStyle(fontSize: 14, color: bodyTextColor),
-      titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: bodyTextColor),
-      titleLarge: TextStyle(fontSize: 20, color: bodyTextColor),
-
-      labelSmall: TextStyle(fontSize: 14, color: bodyTextColor),
-      labelMedium: TextStyle(
-          fontSize: 16, fontWeight: FontWeight.w400, color: bodyTextColor),
-      labelLarge: TextStyle(fontSize: 20, color: bodyTextColor),
-
-      headlineSmall: TextStyle(fontSize: 22, color: bodyTextColor),
-      headlineMedium: TextStyle(fontSize: 24, color: bodyTextColor),
-      headlineLarge: TextStyle(fontSize: 28, color: bodyTextColor),
-    ).apply(
+  static TextTheme _baseTextTheme(Color color) {
+    return ThemeData.light().textTheme.apply(
       fontFamily: 'IBMPlexSans',
+      bodyColor: color,
+      displayColor: color,
     );
   }
 
-  /// Shared app bar theme used across all theme modes
-  /// Creates consistent app bar styling
-  static AppBarTheme _createAppBarTheme() {
+  static AppBarTheme _appBar(Color bg, Color text) {
     return AppBarTheme(
-      backgroundColor: AppPalette.white,
+      backgroundColor: bg,
+      elevation: 0,
       titleTextStyle: TextStyle(
-        color: AppPalette.primary,
+        color: text,
         fontSize: 22,
         fontWeight: FontWeight.w500,
         fontFamily: 'IBMPlexSans',
       ),
+      iconTheme: IconThemeData(color: text),
     );
   }
 
-  /// Creates a consistent input decoration theme
-  /// Customizable for different theme modes
-  static InputDecorationTheme _createInputDecorationTheme({
-    EdgeInsetsGeometry contentPadding = const EdgeInsets.all(KSizes.defaultCompactSpacing),
-    Color enabledBorderColor = AppPalette.primary,
-    Color focusedBorderColor = AppPalette.primary,
-    Color textColor = AppPalette.primary,
-    Color fillColor = AppPalette.white
-  }) {
+  // ───────────────── INPUT ─────────────────
+
+  static InputDecorationTheme _inputTheme(CustomColors c) {
     return InputDecorationTheme(
-      contentPadding: contentPadding,
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(6),
-        borderSide: BorderSide(
-          color: enabledBorderColor,
-          width: 1,
-        ),
-      ),
-      disabledBorder: _createBorder(),
-      errorBorder: _createBorder(color: AppPalette.textRed),
-      focusedErrorBorder: _createBorder(color: AppPalette.textRed),
-      focusedBorder: _createBorder(color: focusedBorderColor),
-      floatingLabelStyle: TextStyle(
-        color: textColor,
-        fontFamily: 'IBMPlexSans',
-      ),
-      counterStyle: TextStyle(color: textColor),
-      helperStyle: TextStyle(color: textColor),
-      hintStyle: const TextStyle(
-        color: AppPalette.warmGrey400,
-        fontFamily: 'IBMPlexSans',
-        fontWeight: FontWeight.w400,
-        fontSize: 16,
-      ),
-      labelStyle: const TextStyle(
-        color: AppPalette.warmGrey400,
-        fontFamily: 'IBMPlexSans',
-        fontWeight: FontWeight.w400,
-        fontSize: 16,
-      ),
-      prefixStyle: TextStyle(
-        color: Colors.black,
-      ),
+      contentPadding: const EdgeInsets.all(KSizes.defaultCompactSpacing),
       filled: true,
-      fillColor: fillColor,
+      fillColor: c.background,
+      enabledBorder: _border(c.textMuted),
+      focusedBorder: _border(c.neonPrimary),
+      hintStyle: TextStyle(color: c.textMuted),
+      labelStyle: TextStyle(color: c.textSecondary),
     );
   }
 
-  /// Creates a consistent elevated button theme
-  /// Customizable for different theme modes
-  static ElevatedButtonThemeData _createElevatedButtonTheme({
-    Color backgroundColor = AppPalette.primary,
-    Color textColor = AppPalette.white,
-    Color disabledColor = AppPalette.primary,
-    Color disabledTextColor = AppPalette.white,
-    double height = 38,
-  }) {
+  // ───────────────── BUTTONS ─────────────────
+
+  static ElevatedButtonThemeData _elevatedBtn(CustomColors c) {
     return ElevatedButtonThemeData(
-      style: ButtonStyle(
-        overlayColor: WidgetStateProperty.all(
-          AppPalette.bottomSheetBarrierColor.withAlpha(11),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: c.neonPrimary,
+        foregroundColor: c.background,
+        fixedSize: const Size.fromHeight(40),
+        textStyle: const TextStyle(
+          fontSize: 16,
+          fontFamily: 'IBMPlexSans',
         ),
-        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(4.0),
-          ),
-        ),
-        fixedSize: WidgetStateProperty.all<Size>(
-          Size.fromHeight(height),
-        ),
-        backgroundColor: WidgetStateProperty.resolveWith<Color>(
-              (Set<WidgetState> states) {
-            if (states.contains(WidgetState.disabled)) {
-              return disabledColor.withValues(alpha: 0.5);
-            }
-            return backgroundColor;
-          },
-        ),
-        foregroundColor: WidgetStateProperty.resolveWith<Color>(
-              (Set<WidgetState> states) {
-            if (states.contains(WidgetState.disabled)) {
-              return disabledTextColor;
-            }
-            return textColor;
-          },
-        ),
-        textStyle: WidgetStateProperty.resolveWith<TextStyle>(
-              (Set<WidgetState> states) {
-            return TextStyle(
-              fontSize: 16,
-              fontFamily: 'IBMPlexSans',
-            );
-          },
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6),
         ),
       ),
     );
   }
 
-  /// Creates a consistent outlined button theme
-  /// Used across all theme modes
-  static OutlinedButtonThemeData _createOutlinedButtonTheme({
-    double height = 38,
-    double borderRadius = 4.0,
-    FontWeight fontWeight = FontWeight.w600,
-    Color textColor = AppPalette.primary
-  }) {
+  static OutlinedButtonThemeData _outlinedBtn(CustomColors c) {
     return OutlinedButtonThemeData(
-      style: ButtonStyle(
-        overlayColor: WidgetStateProperty.all(
-          AppPalette.bottomSheetBarrierColor.withAlpha(11),
+      style: OutlinedButton.styleFrom(
+        foregroundColor: c.neonPrimary,
+        side: BorderSide(color: c.neonPrimary),
+        fixedSize: const Size.fromHeight(40),
+        textStyle: const TextStyle(
+          fontSize: 16,
+          fontFamily: 'IBMPlexSans',
         ),
-        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-          ),
-        ),
-        side: WidgetStateProperty.all<BorderSide>(
-          BorderSide(color: textColor, width: 1),
-        ),
-        fixedSize: WidgetStateProperty.all<Size>(
-          Size.fromHeight(height),
-        ),
-        textStyle: WidgetStateProperty.resolveWith<TextStyle>(
-              (Set<WidgetState> states) {
-            return TextStyle(
-              fontSize: 16,
-              fontWeight: fontWeight,
-              color: textColor,
-              fontFamily: 'IBMPlexSans',
-            );
-          },
-        ),
-        iconColor: WidgetStatePropertyAll(textColor),
-        foregroundColor: WidgetStatePropertyAll(textColor),
       ),
     );
   }
 
-  /// Creates a consistent card theme
-  /// Used for card widgets across the app
-  static CardThemeData _createCardTheme() {
-    return CardThemeData(
-      color: Colors.white,
-      elevation: 4,
+  // ───────────────── CARDS / TOGGLES ─────────────────
+
+  static CardTheme _cardTheme(CustomColors c) {
+    return CardTheme(
+      color: c.background,
+      elevation: 6,
+      shadowColor: c.shadowSoft,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(14),
       ),
-      margin: const EdgeInsets.all(8),
     );
   }
 
-  /// Creates a consistent checkbox theme
-  /// Used for checkbox widgets across the app
-  static CheckboxThemeData _createCheckboxTheme({Color selectedColor=AppPalette.primary}) {
+  static CheckboxThemeData _checkbox(CustomColors c) {
     return CheckboxThemeData(
-      fillColor: WidgetStateProperty.resolveWith((states) {
-        if (states.contains(WidgetState.selected)) {
-          return selectedColor;
-        }
-        return AppPalette.transparent;
-      }),
-      side: BorderSide(
-        color: AppPalette.warmGrey600,
-        width: 1.5,
+      fillColor: WidgetStateProperty.resolveWith(
+            (s) => s.contains(WidgetState.selected)
+            ? c.neonPrimary
+            : Colors.transparent,
       ),
-      checkColor: WidgetStateProperty.all(Colors.white),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(4),
-      ),
+      checkColor: WidgetStateProperty.all(c.background),
+      side: BorderSide(color: c.textMuted),
     );
   }
 
-  /// Creates a consistent switch theme
-  /// Used for switch widgets across the app
-  static SwitchThemeData _createSwitchTheme() {
+  static SwitchThemeData _switch(CustomColors c) {
     return SwitchThemeData(
-      thumbColor: WidgetStateProperty.resolveWith((states) {
-        if (states.contains(WidgetState.selected)) {
-          return Colors.white;
-        }
-        return AppPalette.warmGrey100;
-      }),
-      trackOutlineWidth: WidgetStatePropertyAll(0),
-      trackColor: WidgetStateProperty.resolveWith((states) {
-        if (states.contains(WidgetState.selected)) {
-          return AppPalette.primary;
-        }
-        return AppPalette.warmGrey200;
-      }),
-      trackOutlineColor: WidgetStatePropertyAll(Colors.transparent),
+      thumbColor: WidgetStateProperty.all(c.background),
+      trackColor: WidgetStateProperty.resolveWith(
+            (s) => s.contains(WidgetState.selected)
+            ? c.neonPrimary
+            : c.textMuted,
+      ),
     );
   }
 
-  // MARK: - Theme Modes
+  // ───────────────── LIGHT THEME ─────────────────
 
-  /// Light theme configuration
-  /// The primary theme mode for the application
-  static final lightThemeMode = ThemeData.light().copyWith(
-    colorScheme: ColorScheme(
-      brightness: Brightness.light,
-      primary: AppPalette.primary,
-      onPrimary: AppPalette.white,
-      secondary: AppPalette.warmGrey700,
-      onSecondary: AppPalette.white,
-      error: AppPalette.textRed,
-      onError: AppPalette.white,
-      surface: AppPalette.warmGrey100,
-      onSurface: AppPalette.warmGrey700,
+  static ThemeData lightThemeMode = ThemeData(
+    brightness: Brightness.light,
+    scaffoldBackgroundColor: AppPalette.lightBackground,
+    textTheme: _baseTextTheme(AppPalette.darkText),
+    appBarTheme: _appBar(
+      AppPalette.lightBackground,
+      AppPalette.darkText,
     ),
-    dividerColor: AppPalette.warmGrey300,
-    unselectedWidgetColor: AppPalette.warmGrey400,
-    scaffoldBackgroundColor: AppPalette.white,
-    appBarTheme: _createAppBarTheme(),
-    textTheme: _createBaseTextTheme(bodyTextColor: AppPalette.primary),
-    inputDecorationTheme: _createInputDecorationTheme(),
-    elevatedButtonTheme: _createElevatedButtonTheme(),
-    textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(
-        overlayColor: WidgetStateProperty.all(
-          AppPalette.bottomSheetBarrierColor.withAlpha(11),
-        ),
-      ),
-    ),
-    outlinedButtonTheme: _createOutlinedButtonTheme(
-        borderRadius: 6.0,
-        fontWeight: FontWeight.w400
-    ),
-    cardTheme: _createCardTheme(),
-    checkboxTheme: _createCheckboxTheme(),
-    switchTheme: _createSwitchTheme(),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      selectedItemColor: AppPalette.primary,
-      unselectedItemColor: AppPalette.warmGrey600,
-      backgroundColor: AppPalette.white,
-      selectedLabelStyle: TextStyle(
-        fontWeight: FontWeight.w600,
-        fontSize: 12,
-        color: AppPalette.primary,
-        height: 2,
-      ),
-      unselectedLabelStyle: TextStyle(
-        fontWeight: FontWeight.w500,
-        fontSize: 12,
-        color: AppPalette.warmGrey600,
-        height: 2,
-      ),
-    ),
+    extensions: [
+      CustomColors.light(),
+    ],
+  ).copyWith(
+    inputDecorationTheme: _inputTheme(CustomColors.light()),
+    elevatedButtonTheme: _elevatedBtn(CustomColors.light()),
+    outlinedButtonTheme: _outlinedBtn(CustomColors.light()),
+    // cardTheme: _cardTheme(CustomColors.light()),
+    checkboxTheme: _checkbox(CustomColors.light()),
+    switchTheme: _switch(CustomColors.light()),
   );
 
-  /// Dark theme configuration
-  /// Alternative theme mode with darker color scheme
-  static final darkThemeMode = ThemeData.dark().copyWith(
-    unselectedWidgetColor: AppPalette.warmGrey400,
-    scaffoldBackgroundColor: AppPalette.white,
-    appBarTheme: _createAppBarTheme(),
-    textTheme: _createBaseTextTheme(bodyTextColor: Colors.white),
-    inputDecorationTheme: _createInputDecorationTheme(
-      contentPadding: const EdgeInsets.all(KSizes.defaultSpacing),
-      enabledBorderColor: AppPalette.white,
-      focusedBorderColor: AppPalette.white,
-      fillColor: AppPalette.black,
-      textColor: Color(0xFF1E1E1E)
-    ),
-    elevatedButtonTheme: _createElevatedButtonTheme(
-      backgroundColor: AppPalette.lighterDarkGrey,
-      disabledTextColor: AppPalette.white.withValues(alpha: 0.3),
-      disabledColor: Color(0xFF4A4A4A)
-    ),
-    textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(
-        overlayColor: WidgetStateProperty.all(
-          AppPalette.bottomSheetBarrierColor.withAlpha(11),
-        ),
-      ),
-    ),
-    outlinedButtonTheme: _createOutlinedButtonTheme(textColor: Colors.white),
-    cardTheme: _createCardTheme(),
-    checkboxTheme: _createCheckboxTheme(selectedColor: AppPalette.mediumDarkGrey),
-    switchTheme: _createSwitchTheme(),
-  );
+  // ───────────────── DARK THEME ─────────────────
 
-  /// Pink theme configuration
-  /// Custom theme mode with pink accent colors
-  static final pinkThemeMode = ThemeData.dark().copyWith(
-    unselectedWidgetColor: AppPalette.warmGrey400,
-    scaffoldBackgroundColor: AppPalette.white,
-    appBarTheme: _createAppBarTheme(),
-    textTheme: _createBaseTextTheme(bodyTextColor: Colors.pink),
-    inputDecorationTheme: _createInputDecorationTheme(
-      contentPadding: const EdgeInsets.all(KSizes.defaultSpacing),
-      enabledBorderColor: AppPalette.warmGrey300,
-      focusedBorderColor: Colors.pink,
+  static ThemeData darkThemeMode = ThemeData(
+    brightness: Brightness.dark,
+    scaffoldBackgroundColor: AppPalette.darkBackground,
+    textTheme: _baseTextTheme(AppPalette.white),
+    appBarTheme: _appBar(
+      AppPalette.darkBackground,
+      AppPalette.white,
     ),
-    elevatedButtonTheme: _createElevatedButtonTheme(
-      backgroundColor: Colors.pink,
-      height: 48,
-    ),
-    textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(
-        overlayColor: WidgetStateProperty.all(
-          AppPalette.bottomSheetBarrierColor.withAlpha(11),
-        ),
-      ),
-    ),
-    outlinedButtonTheme: _createOutlinedButtonTheme(),
-    cardTheme: _createCardTheme(),
-    checkboxTheme: _createCheckboxTheme(),
-    switchTheme: _createSwitchTheme(),
+    extensions: [
+      CustomColors.dark(),
+    ],
+  ).copyWith(
+    inputDecorationTheme: _inputTheme(CustomColors.dark()),
+    elevatedButtonTheme: _elevatedBtn(CustomColors.dark()),
+    outlinedButtonTheme: _outlinedBtn(CustomColors.dark()),
+    // cardTheme: _cardTheme(CustomColors.dark()),
+    checkboxTheme: _checkbox(CustomColors.dark()),
+    switchTheme: _switch(CustomColors.dark()),
   );
 }
