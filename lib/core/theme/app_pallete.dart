@@ -1,0 +1,81 @@
+import 'package:flutter/material.dart';
+
+class AppPalette {
+  AppPalette._();
+  static const Color primary = Color(0xFF092090);
+  static const Color lightPrimary = Color(0xFF46342D);
+  static const Color primaryShadow = Color(0x089F3C14);
+  static const Color secondaryShadow = Color(0x1A000000);
+  static const Color light = Color(0xFFE2E2E2);
+  static const Color dragHandleColor = Color(0xFFC8B0A4);
+  static const Color bottomSheetBarrierColor = Color(0x784D2A16);
+  static const Color consentBorderColor = Color(0xFFF2E7E0);
+  static const Color darkGrey = Color(0xFF2F4858);
+  static const Color success = Color(0xFF65AF17);
+  static const Color error = Color(0xFFFA4B44);
+  static const Color black = Color(0xFF000000);
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color gradient = Color(0xFF551A08);
+  static const Color auditLogsCard = Color(0xFF980099);
+  static const Color onboardingCard = Color(0xFF8514DF);
+  static const Color warmGrey100 = Color(0xFFFAF4F0);
+  static const Color warmGrey200 = Color(0xFFFAEAE2);
+  static const Color warmGrey300 = Color(0xFFE8D2C8);
+  static const Color warmGrey400 = Color(0xFFC8B0A4);
+  static const Color warmGrey500 = Color(0xFFAB9384);
+  static const Color warmGrey600 = Color(0xFF85695E);
+  static const Color warmGrey700 = Color(0xFF4E3F39);
+  static const Color warmGrey800 = Color(0xFF2E2622);
+  static const Color warmGrey900 = Color(0xFF0E0502);
+  static const Color scaffoldBackgroundColor = Color(0xFFfbf5f3);
+  static const Color lightTextColor = Color(0xFF545454);
+  static const Color thinTextColor = Color(0xFFE8E8E8);
+  static const Color transparent = Color(0x00000000);
+//some more colors
+  static const Color backgroundColorDark = Color.fromRGBO(24, 24, 32, 1);
+  static const Color textColorGrey1 = Color(0xFFA1A8B0);
+  static const borderColor = Color(0xFFE0E6F0);
+  static const indigoCard = Color(0xFF7122B1);
+  static const errorColor = Colors.redAccent;
+  static const greenCard = Color(0xFF587B29);
+  static const lightGrey = Color(0xFFE5E7EB);
+  static const blueCard = Color(0xFF53ACB2);
+  static const purpleCard = Color(0xFF356BAE);
+  static const backgroundLightGrey = Color(0xFFFCFCFC);
+  static const textGreen = Color(0xFF34A853);
+  static const lightAccentColor = Color(0xFFFBFBFB);
+  static const textColorGrey2 = Color(0xFF8D949C);
+  static const backgroundColorBlack06 = Color.fromRGBO(0, 0, 0, 0.06);
+  static const inputBackgroundColor = Color(0xFFF9FAFB);
+  static const lightGreyBackground = Color(0xFFF9F9F9);
+  static const textYellow = Color(0xFFEFCE4A);
+  static const textGreyColor3 = Color(0xFFBDC1CA);
+  static const calibrationCard =Color(0xFFD37036);
+  static const userManagementCard=Color(0xFF958155);
+  static const blackishGrey=Color(0xFF50555C);
+  static const textRed=Color(0xFFC80A0A);
+  static const invalidOtp=Color(0xFFD64747);
+  static const cancelledLabel=Color(0xFFF37A7A);
+  static const backgroundGrey=Color(0xFFF2F3F7);
+  static const disabledButtonGrey=Color(0xFF565E6D);
+  static const textBoxBackgroundColor=Color(0xFFF3F4F6);
+  static const yellowCard=Color(0xFFFFF7DE);
+  static const tableHeaderBackground=Color(0xFFC8D0FF);
+  static const deleteRed=Color(0xFFFF5C5C);
+  static const masterCard=Color(0xFFE3E3FF);
+  static const Color darkSecondaryShadow = Color(0x66000000);
+  static const Color darkPrimaryShadow = Color(0x55000000);
+  static const Color testPreviewCard = Color(0xFFFF7AD5);
+  static const Color mediumDarkGrey = Color(0xFF3A3A3A);
+  static const Color lighterDarkGrey = Color(0xFF4A4A4A);
+  static const Color indigoCardDark = Color(0xFF303F9F); // Dark Indigo
+  static const Color blueCardDark = Color(0xFF1565C0); // Dark Blue
+  static const Color purpleCardDark = Color(0xFF6A1B9A); // Dark Purple
+  static const Color greenCardDark = Color(0xFF4A7A46); // Dark Green
+  static const Color mutedRed = Color(0xFFC54B46); // Dark Green
+  static const Color yellowCardDark = Color(0xFFe5dec7); // Dark Yellow
+  static const Color masterCardDark = Color(0xFF455A64);
+  static const Color darkBorderColor = Color(0xFF37474F);
+  static const Color lightPurple = Color(0xFFF9F5FF);
+
+}
