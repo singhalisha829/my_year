@@ -5,6 +5,7 @@ import 'package:year_of_alisha/features/presentation/splash_screen.dart';
 import 'core/theme/theme.dart';
 import 'core/theme/theme_service.dart';
 import 'dependency_injection/init_dependencies.dart';
+import 'features/presentation/home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
           title: 'Year of Alisha',
           theme: themeData,
           debugShowCheckedModeBanner: false,
-          home: const NeonYearScreen(),
+          home: const YearInWidgetsCarousel(),
         );
       }
     );
