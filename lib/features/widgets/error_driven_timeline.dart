@@ -39,7 +39,7 @@ class ErrorDrivenTimelineCardsPage extends StatelessWidget {
                 crossAxisCount: 2,
                 mainAxisSpacing: 16,
                 crossAxisSpacing: 16,
-                childAspectRatio: 1,
+                childAspectRatio: 1.1,
                 children: [
                   WidgetCard(
                     title: '💀 Null check operator used on a null value',
