@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../core/theme/theme_service.dart';
+import '../widgets/error_driven_timeline.dart';
 import '../widgets/my_year_in_widgets.dart';
 
 class YearInWidgetsCarousel extends StatefulWidget {
@@ -19,6 +20,7 @@ class _YearInWidgetsCarouselState extends State<YearInWidgetsCarousel> {
   int _currentPage = 0;
 
   final List<Widget> _pages = [
+    const ErrorDrivenTimelineCardsPage(),
     const WidgetCardsPage(),
   ];
 
