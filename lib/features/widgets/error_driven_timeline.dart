@@ -17,20 +17,20 @@ class ErrorDrivenTimelineCardsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+             Text(
               'Error-Driven Timeline',
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: themeService.colors.textPrimary,
               ),
             ),
-            const Text(
+            Text(
               'My year told through Flutter errors I survived',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: themeService.colors.textSecondary,
               ),
             ),
             const SizedBox(height: 24),
@@ -65,7 +65,7 @@ class ErrorDrivenTimelineCardsPage extends StatelessWidget {
                     title: '📐 RenderFlex overflowed by XX pixels',
                     caption: 'UI Alignment Phase',
                     subTitle: 'It fits on my phone. Why does it hate this one?',
-                    borderColor: const Color(0xFFfacc15),
+                    borderColor: themeService.colors.neonYellow,
                     emoji: '🔄',
                     whatHappened: const [
                       'Dynamic text + localization',
@@ -85,7 +85,7 @@ class ErrorDrivenTimelineCardsPage extends StatelessWidget {
                     title: '🥀 The Art of Letting Go',
                     caption: 'Learning to dispose everything properly',
                     subTitle: 'Just because it started with me doesn’t mean it should end with me.',
-                    borderColor: const Color(0xFF34d399),
+                    borderColor: themeService.colors.neonPurple,
                     emoji: '🧱',
                     whatHappened: const [
                       'Async calls finishing after navigation',
@@ -207,10 +207,10 @@ class WidgetCard extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: themeService.colors.textPrimary,
                 ),
               ),
               const Spacer(),
@@ -219,7 +219,7 @@ class WidgetCard extends StatelessWidget {
                 caption,
                 style: TextStyle(
                   fontSize: 11,
-                  color: Colors.white.withOpacity(0.9),
+                  color: themeService.colors.textMuted,
                   fontStyle: FontStyle.italic,
                 ),
               ),
@@ -278,10 +278,10 @@ class CardDetailDialog extends StatelessWidget {
                       children: [
                         Text(
                           title,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: themeService.colors.textPrimary,
                           ),
                         ),
                         const SizedBox(height: 12),
@@ -297,7 +297,7 @@ class CardDetailDialog extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.close, color: Colors.white),
+                    icon: Icon(Icons.close, color: themeService.colors.textPrimary),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                 ],
@@ -322,9 +322,9 @@ class CardDetailDialog extends StatelessWidget {
                         children: [
                           Text(
                           'What was happening',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 20,
-                            color: Colors.white,
+                            color: themeService.colors.textPrimary,
                             fontWeight: FontWeight.w500
                           ),),
                           ...whatHappened
@@ -337,9 +337,9 @@ class CardDetailDialog extends StatelessWidget {
                                   Flexible(
                                     child: Text(
                                     item,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: 15,
-                                      color: Colors.white,
+                                      color: themeService.colors.textPrimary,
                                     ),
                                                               ),
                                   ),
@@ -362,9 +362,9 @@ class CardDetailDialog extends StatelessWidget {
                         children: [
                         Text(
                         'What I learned',
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontSize: 20,
-                            color: Colors.white,
+                            color: themeService.colors.textPrimary,
                             fontWeight: FontWeight.w500
                         ),),
                       ...learnings
@@ -377,9 +377,9 @@ class CardDetailDialog extends StatelessWidget {
                                   Flexible(
                                     child: Text(
                                       item,
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontSize: 15,
-                                        color: Colors.white,
+                                        color: themeService.colors.textPrimary,
                                       ),
                                     ),
                                   ),

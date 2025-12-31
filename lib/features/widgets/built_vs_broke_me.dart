@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+
+import '../../core/theme/theme_service.dart';
 
 class BuiltVsBrokeMeScreen extends StatelessWidget {
   const BuiltVsBrokeMeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final themeService = GetIt.instance<ThemeService>();
+
     return Scaffold(
-      backgroundColor: const Color(0xFF0A0E27),
+      backgroundColor: themeService.colors.background,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Column(
             children: [
-              const Text(
+              Text(
                 'Screens I Built vs Screens That Broke Me',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: themeService.colors.textPrimary,
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),

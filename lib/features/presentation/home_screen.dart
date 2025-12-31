@@ -8,6 +8,7 @@ import '../../core/theme/theme_service.dart';
 import '../widgets/built_vs_broke_me.dart';
 import '../widgets/error_driven_timeline.dart';
 import '../widgets/my_year_in_widgets.dart';
+import '../widgets/where_my_time_went.dart';
 
 class YearInWidgetsCarousel extends StatefulWidget {
   const YearInWidgetsCarousel({super.key});
@@ -21,6 +22,7 @@ class _YearInWidgetsCarouselState extends State<YearInWidgetsCarousel> {
   int _currentPage = 0;
 
   final List<Widget> _pages = [
+    const TimeSpentWhereScreen(),
     const BuiltVsBrokeMeScreen(),
     const ErrorDrivenTimelineCardsPage(),
     const WidgetCardsPage(),

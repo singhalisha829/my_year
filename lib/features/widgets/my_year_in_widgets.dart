@@ -52,7 +52,7 @@ class WidgetCardsPage extends StatelessWidget {
                     title: 'StatefulWidget',
                     subtitle: 'Evolving Features',
                     caption: 'This started small…',
-                    borderColor: const Color(0xFFfacc15),
+                    borderColor: themeService.colors.neonYellow,
                     emoji: '🔄',
                     content: const [
                       '🔄 Appointment confirmation & rescheduling flows',
@@ -97,7 +97,7 @@ class WidgetCardsPage extends StatelessWidget {
                     title: 'Clean\nArchitecture',
                     subtitle: 'Long-Term Sanity',
                     caption: 'Future me will thank me.',
-                    borderColor: const Color(0xFF34d399),
+                    borderColor: themeService.colors.neonPurple,
                     emoji: '🧱',
                     content: const [
                       '🧱 Entity / Model / UseCase standardization',
@@ -173,10 +173,10 @@ class WidgetCard extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: themeService.colors.textPrimary,
                 ),
               ),
               const SizedBox(height: 4),
@@ -184,7 +184,7 @@ class WidgetCard extends StatelessWidget {
                 subtitle,
                 style: TextStyle(
                   fontSize: 12,
-                  color: Colors.white.withOpacity(0.9),
+                  color: themeService.colors.textMuted,
                 ),
               ),
               const Spacer(),
@@ -256,10 +256,10 @@ class CardDetailDialog extends StatelessWidget {
                       children: [
                         Text(
                           title,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: themeService.colors.textPrimary,
                           ),
                         ),
                         const SizedBox(height: 4),
@@ -267,7 +267,7 @@ class CardDetailDialog extends StatelessWidget {
                           subtitle,
                           style: TextStyle(
                             fontSize: 16,
-                            color: Colors.white.withOpacity(0.9),
+                            color: themeService.colors.textSecondary,
                           ),
                         ),
                         const SizedBox(height: 12),
@@ -276,14 +276,14 @@ class CardDetailDialog extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 16,
                             fontStyle: FontStyle.italic,
-                            color: Colors.white.withOpacity(0.9),
+                            color: themeService.colors.textMuted,
                           ),
                         ),
                       ],
                     ),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.close, color: Colors.white),
+                    icon: Icon(Icons.close, color: themeService.colors.textPrimary),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                 ],
@@ -299,14 +299,14 @@ class CardDetailDialog extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 12),
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.15),
+                        color: themeService.colors.textPrimary.withOpacity(0.15),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
                         item,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 15,
-                          color: Colors.white,
+                          color: themeService.colors.textPrimary,
                         ),
                       ),
                     ),

@@ -8,6 +8,9 @@ class CustomColors extends ThemeExtension<CustomColors> {
   final Color neonPrimary;
   final Color neonSecondary;
   final Color neonAccent;
+  final Color neonYellow;
+  final Color neonOrange;
+  final Color neonPurple;
 
   final Color textPrimary;
   final Color textSecondary;
@@ -26,6 +29,9 @@ class CustomColors extends ThemeExtension<CustomColors> {
     required this.textMuted,
     required this.shadowSoft,
     required this.shadowStrong,
+    required this.neonOrange,
+    required this.neonPurple,
+    required this.neonYellow
   });
 
   // Light theme factory
@@ -42,7 +48,9 @@ class CustomColors extends ThemeExtension<CustomColors> {
 
     shadowSoft: AppPalette.shadowSoft,
     shadowStrong: AppPalette.shadowStrong,
-  );
+    neonYellow: AppPalette.neonYellowLight,
+    neonPurple: AppPalette.neonPurpleLight,
+    neonOrange: AppPalette.neonOrangeLight,  );
 
   // Dark theme factory
   factory CustomColors.dark() => const CustomColors(
@@ -58,6 +66,9 @@ class CustomColors extends ThemeExtension<CustomColors> {
 
     shadowSoft: Color(0x33000000),
     shadowStrong: Color(0x66000000),
+    neonOrange: AppPalette.neonOrange,
+    neonPurple: AppPalette.neonPurple,
+    neonYellow: AppPalette.neonYellow,
   );
 
 
@@ -72,6 +83,9 @@ class CustomColors extends ThemeExtension<CustomColors> {
     Color? textMuted,
     Color? shadowSoft,
     Color? shadowStrong,
+    Color? neonYellow,
+    Color? neonPurple,
+    Color? neonOrange
   }) {
     return CustomColors(
       background: background ?? this.background,
@@ -83,6 +97,9 @@ class CustomColors extends ThemeExtension<CustomColors> {
       textMuted: textMuted ?? this.textMuted,
       shadowSoft: shadowSoft ?? this.shadowSoft,
       shadowStrong: shadowStrong ?? this.shadowStrong,
+      neonOrange: neonOrange ?? this.neonOrange,
+      neonPurple: neonPurple ?? this.neonPurple,
+      neonYellow: neonYellow ?? this.neonYellow
     );
   }
 
@@ -100,6 +117,9 @@ class CustomColors extends ThemeExtension<CustomColors> {
       textMuted: Color.lerp(textMuted, other.textMuted, t)!,
       shadowSoft: Color.lerp(shadowSoft, other.shadowSoft, t)!,
       shadowStrong: Color.lerp(shadowStrong, other.shadowStrong, t)!,
+      neonYellow: Color.lerp(neonYellow, other.neonYellow, t)!,
+      neonPurple: Color.lerp(neonPurple, other.neonPurple, t)!,
+      neonOrange: Color.lerp(neonOrange, other.neonOrange, t)!,
     );
   }
 }
