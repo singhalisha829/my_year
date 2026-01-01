@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           title: 'Year of Alisha',
           theme: themeData,
           debugShowCheckedModeBanner: false,
-          home: const YearInWidgetsCarousel(),
+          home: const HomeScreen(),
         );
       }
     );

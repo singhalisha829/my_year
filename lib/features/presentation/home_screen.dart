@@ -8,23 +8,25 @@ import '../../core/theme/theme_service.dart';
 import '../widgets/built_vs_broke_me.dart';
 import '../widgets/error_driven_timeline.dart';
 import '../widgets/my_year_in_widgets.dart';
+import '../widgets/next_year.dart';
 import '../widgets/packages_that_carried_me.dart';
 import '../widgets/qoute_of_the_year.dart';
 import '../widgets/what_i_would_do_different.dart';
 import '../widgets/where_my_time_went.dart';
 
-class YearInWidgetsCarousel extends StatefulWidget {
-  const YearInWidgetsCarousel({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<YearInWidgetsCarousel> createState() => _YearInWidgetsCarouselState();
+  State<HomeScreen> createState() => _YearInWidgetsCarouselState();
 }
 
-class _YearInWidgetsCarouselState extends State<YearInWidgetsCarousel> {
+class _YearInWidgetsCarouselState extends State<HomeScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
   final List<Widget> _pages = [
+    const NextYearFocusPage(),
     const LearningsPage(),
     const QuotesFromTheYearScreen(),
     const PackagesThatCarriedMeScreen(),
