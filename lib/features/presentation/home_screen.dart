@@ -10,6 +10,7 @@ import '../widgets/error_driven_timeline.dart';
 import '../widgets/my_year_in_widgets.dart';
 import '../widgets/packages_that_carried_me.dart';
 import '../widgets/qoute_of_the_year.dart';
+import '../widgets/what_i_would_do_different.dart';
 import '../widgets/where_my_time_went.dart';
 
 class YearInWidgetsCarousel extends StatefulWidget {
@@ -24,6 +25,7 @@ class _YearInWidgetsCarouselState extends State<YearInWidgetsCarousel> {
   int _currentPage = 0;
 
   final List<Widget> _pages = [
+    const LearningsPage(),
     const QuotesFromTheYearScreen(),
     const PackagesThatCarriedMeScreen(),
     const TimeSpentWhereScreen(),
