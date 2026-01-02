@@ -319,7 +319,7 @@ class CardDetailDialog extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 12),
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.15),
+                        color: colors.textMuted.withAlpha(30),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Column(
@@ -359,7 +359,7 @@ class CardDetailDialog extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 12),
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.15),
+                        color: colors.textMuted.withAlpha(30),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Column(

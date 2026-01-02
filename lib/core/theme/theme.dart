@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:year_of_alisha/core/theme/theme_extension.dart';
 import '../const/sizes.dart';
 import 'app_pallete.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   // ───────────────── COMMON ─────────────────
@@ -14,10 +15,11 @@ class AppTheme {
   }
 
   static TextTheme _baseTextTheme(Color color) {
-    return ThemeData.light().textTheme.apply(
-      fontFamily: 'IBMPlexSans',
-      bodyColor: color,
-      displayColor: color,
+    return GoogleFonts.outfitTextTheme(
+      ThemeData.light().textTheme.apply(
+        bodyColor: color,
+        displayColor: color,
+      ),
     );
   }
 
@@ -25,11 +27,10 @@ class AppTheme {
     return AppBarTheme(
       backgroundColor: bg,
       elevation: 0,
-      titleTextStyle: TextStyle(
+      titleTextStyle: GoogleFonts.outfit(
         color: text,
         fontSize: 22,
         fontWeight: FontWeight.w500,
-        fontFamily: 'IBMPlexSans',
       ),
       iconTheme: IconThemeData(color: text),
     );

@@ -171,7 +171,7 @@ class _TimeSpentWhereScreenState extends State<TimeSpentWhereScreen> {
                             child: Text(
                               '"${timeData[selectedIndex!].caption}"',
                               style: TextStyle(
-                                color: Colors.white.withOpacity(0.6),
+                                color: colors.textMuted,
                                 fontSize: 16,
                               ),
                             ),

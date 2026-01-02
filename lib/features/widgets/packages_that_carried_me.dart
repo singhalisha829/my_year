@@ -191,7 +191,6 @@ class _PackagesThatCarriedMeScreenState
       context: context,
       builder: (BuildContext context) {
         return Dialog(
-          backgroundColor: Colors.transparent,
           child: Container(
             constraints: const BoxConstraints(maxWidth: 500),
             padding: const EdgeInsets.all(24),

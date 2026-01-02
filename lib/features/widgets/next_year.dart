@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../core/theme/theme_extension.dart';
 import '../../core/theme/theme_service.dart';
 
 class NextYearFocusPage extends StatelessWidget {
@@ -116,6 +117,7 @@ class WidgetCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeService = GetIt.instance<ThemeService>();
+    final colors = Theme.of(context).extension<CustomColors>()!;
 
     return GestureDetector(
       onTap: () {
@@ -132,7 +134,7 @@ class WidgetCard extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: themeService.colors.background,
+          color: colors.background,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: borderColor, width: 3),
           boxShadow: [
@@ -268,7 +270,7 @@ class CardDetailDialog extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 12),
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.15),
+                        color: themeService.colors.textMuted.withAlpha(30),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Column(
@@ -308,7 +310,7 @@ class CardDetailDialog extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 12),
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.15),
+                        color: themeService.colors.textMuted.withAlpha(30),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Column(

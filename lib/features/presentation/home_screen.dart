@@ -9,7 +9,6 @@ import '../../core/theme/theme_extension.dart';
 import '../../core/theme/theme_service.dart';
 import '../widgets/built_vs_broke_me.dart';
 import '../widgets/error_driven_timeline.dart';
-import '../widgets/my_year_in_widgets.dart';
 import '../widgets/next_year.dart';
 import '../widgets/packages_that_carried_me.dart';
 import '../widgets/qoute_of_the_year.dart';
@@ -92,6 +91,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
+    final colors = Theme.of(context).extension<CustomColors>()!;
+    final themeService = GetIt.instance<ThemeService>();
 
     return BaseScaffold(
       title: 'Year Of Alisha',
@@ -99,10 +100,12 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           // Section Selector
            _buildSectionSelector(),
+          const SizedBox(height: 10,),
 
           // Content Area with AnimatedSwitcher
-          SizedBox(
+          Container(
             height: screenHeight * 0.77,
+            color: themeService.currentTheme.name == 'dark'?Colors.transparent:colors.textMuted.withOpacity(0.1),
             child: AnimatedSwitcher(
               duration: const Duration(milliseconds: 400),
               switchInCurve: _currentSection == WrapSection.professional
@@ -155,8 +158,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 12,
                   decoration: BoxDecoration(
                     color: _currentPage == index
-                        ? Colors.white
-                        : Colors.white.withOpacity(0.3),
+                        ? colors.textPrimary
+                        : colors.textMuted,
                     borderRadius: BorderRadius.circular(6),
                   ),
                 ),
@@ -177,8 +180,8 @@ class _HomeScreenState extends State<HomeScreen> {
         color: colors.background,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: Colors.white.withOpacity(0.1),
-          width: 1,
+          color: colors.textMuted.withAlpha(30),
+          width: 2,
         ),
       ),
       child: ClipRRect(

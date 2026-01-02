@@ -268,7 +268,7 @@ class CardDetailDialog extends StatelessWidget {
               margin: const EdgeInsets.all(12),
               padding: const EdgeInsets.symmetric(vertical: 10),
               decoration: BoxDecoration(
-                color: themeService.colors.textPrimary.withOpacity(0.15),
+                color: themeService.colors.textMuted.withAlpha(30),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Flexible(
