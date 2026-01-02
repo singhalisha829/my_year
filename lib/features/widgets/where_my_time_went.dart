@@ -3,6 +3,7 @@ import 'dart:math' as math;
 
 import 'package:get_it/get_it.dart';
 
+import '../../core/theme/theme_extension.dart';
 import '../../core/theme/theme_service.dart';
 
 class TimeSpentWhereScreen extends StatefulWidget {
@@ -18,49 +19,48 @@ class _TimeSpentWhereScreenState extends State<TimeSpentWhereScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = GetIt.instance<ThemeService>();
+    final colors = Theme.of(context).extension<CustomColors>()!;
 
     final List<TimeData> timeData = [
       TimeData(
         label: 'Debugging',
         caption:'I didn’t write bugs. I discovered undocumented features.',
         percentage: 35,
-        color: themeService.colors.neonSecondary,
+        color: colors.neonSecondary,
       ),
       TimeData(
         label: 'UI tweaks',
         caption: 'Alignment is a lifestyle, not a task.',
         percentage: 25,
-        color: themeService.colors.neonPrimary,
+        color: colors.neonPrimary,
       ),
       TimeData(
         label: 'Reading docs',
         caption: 'The answer was always in the docs. On page 17.',
         percentage: 15,
-        color: themeService.colors.neonYellow,
+        color: colors.neonYellow,
       ),
       TimeData(
         label: 'Waiting for builds',
         caption: 'Great time to rethink life choices.',
         percentage: 10,
-        color: themeService.colors.neonOrange,
+        color: colors.neonOrange,
       ),
       TimeData(
         label: 'Googling errors',
         caption: 'Typed the error. Found myself.',
         percentage: 10,
-        color: themeService.colors.neonAccent,
+        color: colors.neonAccent,
       ),
       TimeData(
         label: 'Actually coding clean code',
         caption: 'Five percent. But it was beautiful.',
         percentage: 5,
-        color: themeService.colors.neonPurple,
+        color: colors.neonPurple,
       ),
     ];
 
     return Scaffold(
-      backgroundColor: themeService.colors.background,
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -70,7 +70,7 @@ class _TimeSpentWhereScreenState extends State<TimeSpentWhereScreen> {
                  Text(
                   'Where My Time Went',
                   style: TextStyle(
-                    color: themeService.colors.textPrimary,
+                    color: colors.textPrimary,
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
                   ),
@@ -90,6 +90,7 @@ class _TimeSpentWhereScreenState extends State<TimeSpentWhereScreen> {
                           size: const Size(280, 280),
                           painter: DonutChartPainter(
                             timeData,
+                            colors.background,
                             selectedIndex: selectedIndex,
                           ),
                         ),
@@ -149,7 +150,7 @@ class _TimeSpentWhereScreenState extends State<TimeSpentWhereScreen> {
                               Text(
                                 timeData[selectedIndex!].label,
                                 style:  TextStyle(
-                                  color: themeService.colors.textPrimary,
+                                  color: colors.textPrimary,
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -183,7 +184,7 @@ class _TimeSpentWhereScreenState extends State<TimeSpentWhereScreen> {
                   Text(
                     'Tap on a segment to see details',
                     style: TextStyle(
-                      color: themeService.colors.textMuted,
+                      color: colors.textMuted,
                       fontSize: 18,
                     ),
                   ),
@@ -196,6 +197,8 @@ class _TimeSpentWhereScreenState extends State<TimeSpentWhereScreen> {
   }
 
   Widget _buildPercentageLabel(List<TimeData> timeData,int index) {
+    final colors = Theme.of(context).extension<CustomColors>()!;
+
     final data = timeData[index];
 
     // Calculate the angle for this segment
@@ -218,7 +221,7 @@ class _TimeSpentWhereScreenState extends State<TimeSpentWhereScreen> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
-          color: const Color(0xFF0A0E27).withOpacity(0.8),
+          color: colors.background.withOpacity(0.8),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Text(
@@ -284,8 +287,9 @@ class TimeData {
 class DonutChartPainter extends CustomPainter {
   final List<TimeData> data;
   final int? selectedIndex;
+  final Color backgroundColor;
 
-  DonutChartPainter(this.data, {this.selectedIndex});
+  DonutChartPainter(this.data,this.backgroundColor, {this.selectedIndex});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -341,7 +345,7 @@ class DonutChartPainter extends CustomPainter {
 
     // Draw inner circle (hole in the donut)
     final innerPaint = Paint()
-      ..color = const Color(0xFF0A0E27)
+      ..color = backgroundColor
       ..style = PaintingStyle.fill;
 
     canvas.drawCircle(center, innerRadius, innerPaint);

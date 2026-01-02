@@ -1,15 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 
-import '../../core/theme/theme_service.dart';
+import '../../core/theme/theme_extension.dart';
 
 class ErrorDrivenTimelineCardsPage extends StatelessWidget {
   const ErrorDrivenTimelineCardsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final themeService = GetIt.instance<ThemeService>();
+    final colors = Theme.of(context).extension<CustomColors>()!;
 
     return SafeArea(
       child: Padding(
@@ -22,7 +21,7 @@ class ErrorDrivenTimelineCardsPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
-                color: themeService.colors.textPrimary,
+                color: colors.textPrimary,
               ),
             ),
             Text(
@@ -30,7 +29,7 @@ class ErrorDrivenTimelineCardsPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: themeService.colors.textSecondary,
+                color: colors.textSecondary,
               ),
             ),
             const SizedBox(height: 24),
@@ -45,7 +44,7 @@ class ErrorDrivenTimelineCardsPage extends StatelessWidget {
                     title: '💀 Null check operator used on a null value',
                     caption: 'Character Development Arc',
                     subTitle: 'But the API always returns this… right?',
-                    borderColor: themeService.colors.neonPrimary,
+                    borderColor: colors.neonPrimary,
                     emoji: '⚡',
                     whatHappened: const [
                       'API responses lying',
@@ -65,7 +64,7 @@ class ErrorDrivenTimelineCardsPage extends StatelessWidget {
                     title: '📐 RenderFlex overflowed by XX pixels',
                     caption: 'UI Alignment Phase',
                     subTitle: 'It fits on my phone. Why does it hate this one?',
-                    borderColor: themeService.colors.neonYellow,
+                    borderColor: colors.neonYellow,
                     emoji: '🔄',
                     whatHappened: const [
                       'Dynamic text + localization',
@@ -85,7 +84,7 @@ class ErrorDrivenTimelineCardsPage extends StatelessWidget {
                     title: '🥀 The Art of Letting Go',
                     caption: 'Learning to dispose everything properly',
                     subTitle: 'Just because it started with me doesn’t mean it should end with me.',
-                    borderColor: themeService.colors.neonPurple,
+                    borderColor: colors.neonPurple,
                     emoji: '🧱',
                     whatHappened: const [
                       'Async calls finishing after navigation',
@@ -105,7 +104,7 @@ class ErrorDrivenTimelineCardsPage extends StatelessWidget {
                     title: '🧭 Looking up a deactivated widget’s ancestor is unsafe',
                     caption: 'The Ghost Context Era',
                     subTitle: 'But I literally have a context. I can see it.',
-                    borderColor: themeService.colors.neonAccent,
+                    borderColor: colors.neonAccent,
                     emoji: '⏳',
                     whatHappened: const [
                       'Using context.read() after await',
@@ -123,7 +122,7 @@ class ErrorDrivenTimelineCardsPage extends StatelessWidget {
                     title: 'Fixed without knowing why',
                     caption: 'Legendary Moment',
                     subTitle: 'I don’t know why this works, but I will not question it.',
-                    borderColor: themeService.colors.neonSecondary,
+                    borderColor: colors.neonSecondary,
                     emoji: '🐞',
                     whatHappened: const [
                       'Native calls behaving differently per machine',
@@ -171,7 +170,7 @@ class WidgetCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = GetIt.instance<ThemeService>();
+    final colors = Theme.of(context).extension<CustomColors>()!;
 
     return GestureDetector(
       onTap: () {
@@ -188,7 +187,7 @@ class WidgetCard extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: themeService.colors.background,
+          color: colors.background,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: borderColor, width: 3),
           boxShadow: [
@@ -210,7 +209,7 @@ class WidgetCard extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: themeService.colors.textPrimary,
+                  color: colors.textPrimary,
                 ),
               ),
               const Spacer(),
@@ -219,7 +218,7 @@ class WidgetCard extends StatelessWidget {
                 caption,
                 style: TextStyle(
                   fontSize: 11,
-                  color: themeService.colors.textMuted,
+                  color: colors.textMuted,
                   fontStyle: FontStyle.italic,
                 ),
               ),
@@ -249,14 +248,14 @@ class CardDetailDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = GetIt.instance<ThemeService>();
+    final colors = Theme.of(context).extension<CustomColors>()!;
 
     return Dialog(
       child: Container(
         constraints: const BoxConstraints(maxWidth: 600),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24),
-          color: themeService.colors.background.withAlpha(200),
+          color: colors.background.withAlpha(200),
           border: Border.all(color: borderColor, width: 4),
           boxShadow: [
             BoxShadow(
@@ -281,7 +280,7 @@ class CardDetailDialog extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color: themeService.colors.textPrimary,
+                            color: colors.textPrimary,
                           ),
                         ),
                         const SizedBox(height: 12),
@@ -297,7 +296,7 @@ class CardDetailDialog extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    icon: Icon(Icons.close, color: themeService.colors.textPrimary),
+                    icon: Icon(Icons.close, color: colors.textPrimary),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                 ],
@@ -324,7 +323,7 @@ class CardDetailDialog extends StatelessWidget {
                           'What was happening',
                           style: TextStyle(
                             fontSize: 20,
-                            color: themeService.colors.textPrimary,
+                            color: colors.textPrimary,
                             fontWeight: FontWeight.w500
                           ),),
                           ...whatHappened
@@ -339,7 +338,7 @@ class CardDetailDialog extends StatelessWidget {
                                     item,
                                     style: TextStyle(
                                       fontSize: 15,
-                                      color: themeService.colors.textPrimary,
+                                      color: colors.textPrimary,
                                     ),
                                                               ),
                                   ),
@@ -364,7 +363,7 @@ class CardDetailDialog extends StatelessWidget {
                         'What I learned',
                         style: TextStyle(
                             fontSize: 20,
-                            color: themeService.colors.textPrimary,
+                            color: colors.textPrimary,
                             fontWeight: FontWeight.w500
                         ),),
                       ...learnings
@@ -379,7 +378,7 @@ class CardDetailDialog extends StatelessWidget {
                                       item,
                                       style: TextStyle(
                                         fontSize: 15,
-                                        color: themeService.colors.textPrimary,
+                                        color: colors.textPrimary,
                                       ),
                                     ),
                                   ),

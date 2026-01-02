@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../core/theme/theme_extension.dart';
 import '../../core/theme/theme_service.dart';
 
 class PackagesThatCarriedMeScreen extends StatefulWidget {
@@ -179,7 +180,7 @@ class _PackagesThatCarriedMeScreenState
     super.dispose();
   }
 
-  void _showPackageDetails(PackageData package) {
+  void _showPackageDetails(PackageData package, Color backgroundColor,Color textColor,Color iconColor) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -191,8 +192,8 @@ class _PackagesThatCarriedMeScreenState
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  const Color(0xFF1a1a2e),
-                  const Color(0xFF16213e),
+                  backgroundColor,
+                  backgroundColor.withOpacity(0.8),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -200,11 +201,11 @@ class _PackagesThatCarriedMeScreenState
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 width: 2,
-                color: const Color(0xFF00F5FF),
+                color: textColor,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xFF00F5FF).withOpacity(0.5),
+                  color: textColor.withOpacity(0.5),
                   blurRadius: 30,
                   spreadRadius: 5,
                 ),
@@ -221,8 +222,8 @@ class _PackagesThatCarriedMeScreenState
                       Expanded(
                         child: Text(
                           package.name,
-                          style: const TextStyle(
-                            color: Color(0xFF00F5FF),
+                          style:  TextStyle(
+                            color: textColor,
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'monospace',
@@ -230,7 +231,7 @@ class _PackagesThatCarriedMeScreenState
                         ),
                       ),
                       IconButton(
-                        icon: const Icon(Icons.close, color: Colors.white70),
+                        icon:  Icon(Icons.close, color: iconColor),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                     ],
@@ -239,7 +240,6 @@ class _PackagesThatCarriedMeScreenState
                   Text(
                     package.description,
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.8),
                       fontSize: 16,
                       fontFamily: 'monospace',
                     ),
@@ -248,26 +248,25 @@ class _PackagesThatCarriedMeScreenState
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF00F5FF).withOpacity(0.1),
+                      color: textColor.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
-                        color: const Color(0xFF00F5FF).withOpacity(0.3),
+                        color: textColor.withOpacity(0.3),
                       ),
                     ),
                     child: Text(
                       '"${package.caption}"',
                       style: const TextStyle(
-                        color: Colors.white,
                         fontSize: 14,
                         fontStyle: FontStyle.italic,
                       ),
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const Text(
+                   Text(
                     'What it did:',
                     style: TextStyle(
-                      color: Color(0xFF00F5FF),
+                      color: textColor,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -278,10 +277,10 @@ class _PackagesThatCarriedMeScreenState
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                         Text(
                           '• ',
                           style: TextStyle(
-                            color: Color(0xFF00F5FF),
+                            color: textColor,
                             fontSize: 16,
                           ),
                         ),
@@ -289,7 +288,6 @@ class _PackagesThatCarriedMeScreenState
                           child: Text(
                             item,
                             style: TextStyle(
-                              color: Colors.white.withOpacity(0.9),
                               fontSize: 14,
                             ),
                           ),
@@ -298,10 +296,10 @@ class _PackagesThatCarriedMeScreenState
                     ),
                   )),
                   const SizedBox(height: 20),
-                  const Text(
+                  Text(
                     'Awards:',
                     style: TextStyle(
-                      color: Color(0xFF00F5FF),
+                      color: textColor,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -316,19 +314,18 @@ class _PackagesThatCarriedMeScreenState
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          const Color(0xFF00F5FF).withOpacity(0.2),
-                          const Color(0xFF00F5FF).withOpacity(0.1),
+                          textColor.withOpacity(0.2),
+                          textColor.withOpacity(0.1),
                         ],
                       ),
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
-                        color: const Color(0xFF00F5FF).withOpacity(0.5),
+                        color: textColor.withOpacity(0.5),
                       ),
                     ),
                     child: Text(
                       award,
                       style: const TextStyle(
-                        color: Colors.white,
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                       ),
@@ -345,11 +342,7 @@ class _PackagesThatCarriedMeScreenState
 
   @override
   Widget build(BuildContext context) {
-    final themeService = GetIt.instance<ThemeService>();
-
-    return Scaffold(
-      backgroundColor: themeService.colors.background,
-      body: SafeArea(
+    return SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Column(
@@ -358,7 +351,6 @@ class _PackagesThatCarriedMeScreenState
               const Text(
                 'Packages That Carried Me',
                 style: TextStyle(
-                  color: Colors.white,
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),
@@ -372,7 +364,7 @@ class _PackagesThatCarriedMeScreenState
                       position: _slideAnimations[index],
                       child: FadeTransition(
                         opacity: _fadeAnimations[index],
-                        child: _buildPackageCard(packages[index], index),
+                        child: _buildPackageCard(packages[index], index,context),
                       ),
                     );
                   },
@@ -381,21 +373,22 @@ class _PackagesThatCarriedMeScreenState
             ],
           ),
         ),
-      ),
     );
   }
 
-  Widget _buildPackageCard(PackageData package, int index) {
+  Widget _buildPackageCard(PackageData package, int index, BuildContext context) {
+    final colors = Theme.of(context).extension<CustomColors>()!;
+
     return GestureDetector(
-      onTap: () => _showPackageDetails(package),
+      onTap: () => _showPackageDetails(package,colors.background,colors.neonPrimary,colors.textMuted),
       child: Container(
         margin: const EdgeInsets.only(bottom: 20),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              const Color(0xFF00F5FF).withOpacity(0.15),
-              const Color(0xFF00F5FF).withOpacity(0.05),
+              colors.neonPrimary.withOpacity(0.15),
+              colors.neonPrimary.withOpacity(0.05),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -403,11 +396,11 @@ class _PackagesThatCarriedMeScreenState
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             width: 2,
-            color: const Color(0xFF00F5FF),
+            color: colors.neonPrimary,
           ),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF00F5FF).withOpacity(0.4),
+              color: colors.neonPrimary.withOpacity(0.4),
               blurRadius: 20,
               spreadRadius: 2,
             ),
@@ -418,8 +411,8 @@ class _PackagesThatCarriedMeScreenState
           children: [
             Text(
               package.name,
-              style: const TextStyle(
-                color: Color(0xFF00F5FF),
+              style:  TextStyle(
+                color: colors.neonPrimary,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'monospace',
@@ -429,7 +422,7 @@ class _PackagesThatCarriedMeScreenState
             Text(
               package.description,
               style: TextStyle(
-                color: Colors.white.withOpacity(0.7),
+                color: colors.textSecondary,
                 fontSize: 14,
                 fontFamily: 'monospace',
               ),

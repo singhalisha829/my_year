@@ -3,7 +3,9 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:year_of_alisha/features/widgets/base_scaffold.dart';
 
+import '../../core/theme/theme_extension.dart';
 import '../../core/theme/theme_service.dart';
 import '../widgets/built_vs_broke_me.dart';
 import '../widgets/error_driven_timeline.dart';
@@ -89,39 +91,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = GetIt.instance<ThemeService>();
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return Scaffold(
-      backgroundColor: themeService.colors.background,
-      appBar: AppBar(
-        backgroundColor: themeService.colors.background,
-        elevation: 0,
-        title: const Text(
-          'Year of Alisha',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(
-              themeService.currentTheme.name == 'dark'
-                  ? Icons.light_mode
-                  : Icons.dark_mode,
-            ),
-            onPressed: () {
-              themeService.toggleTheme();
-            },
-          ),
-        ],
-      ),
+    return BaseScaffold(
+      title: 'Year Of Alisha',
       body: Column(
         children: [
           // Section Selector
-           _buildSectionSelector(themeService),
+           _buildSectionSelector(),
 
           // Content Area with AnimatedSwitcher
           SizedBox(
@@ -191,11 +168,13 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildSectionSelector(ThemeService themeService) {
+  Widget _buildSectionSelector() {
+    final colors = Theme.of(context).extension<CustomColors>()!;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 24),
       decoration: BoxDecoration(
-        color: themeService.colors.background,
+        color: colors.background,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: Colors.white.withOpacity(0.1),
@@ -214,7 +193,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   icon: Icons.code,
                   section: WrapSection.professional,
                   isSelected: _currentSection == WrapSection.professional,
-                  themeService: themeService,
                 ),
               ),
               Expanded(
@@ -223,7 +201,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   icon: Icons.favorite,
                   section: WrapSection.personal,
                   isSelected: _currentSection == WrapSection.personal,
-                  themeService: themeService,
                 ),
               ),
             ],
@@ -238,8 +215,8 @@ class _HomeScreenState extends State<HomeScreen> {
     required IconData icon,
     required WrapSection section,
     required bool isSelected,
-    required ThemeService themeService,
   }) {
+    final colors = Theme.of(context).extension<CustomColors>()!;
     return GestureDetector(
       onTap: () => _onSectionChanged(section),
       child: AnimatedContainer(
@@ -248,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         decoration: BoxDecoration(
           color: isSelected
-              ? themeService.colors.neonAccent.withOpacity(0.2)
+              ? colors.neonAccent.withOpacity(0.2)
               : Colors.transparent,
           borderRadius: BorderRadius.circular(5),
         ),
@@ -259,8 +236,8 @@ class _HomeScreenState extends State<HomeScreen> {
               icon,
               size: 20,
               color: isSelected
-                  ? themeService.colors.neonAccent
-                  : Colors.white.withOpacity(0.5),
+                  ? colors.neonAccent
+                  : colors.textMuted,
             ),
             const SizedBox(width: 8),
             Text(
@@ -269,8 +246,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontSize: 16,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                 color: isSelected
-                    ? Colors.white
-                    : Colors.white.withOpacity(0.5),
+                    ? colors.neonAccent
+                    : colors.textMuted,
               ),
             ),
           ],

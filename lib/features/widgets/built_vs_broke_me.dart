@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../core/theme/theme_extension.dart';
 import '../../core/theme/theme_service.dart';
 
 class BuiltVsBrokeMeScreen extends StatelessWidget {
@@ -8,11 +9,9 @@ class BuiltVsBrokeMeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = GetIt.instance<ThemeService>();
+    final colors = Theme.of(context).extension<CustomColors>()!;
 
-    return Scaffold(
-      backgroundColor: themeService.colors.background,
-      body: SafeArea(
+    return SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Column(
@@ -20,7 +19,7 @@ class BuiltVsBrokeMeScreen extends StatelessWidget {
               Text(
                 'Screens I Built vs Screens That Broke Me',
                 style: TextStyle(
-                  color: themeService.colors.textPrimary,
+                  color: colors.textPrimary,
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),
@@ -39,6 +38,7 @@ class BuiltVsBrokeMeScreen extends StatelessWidget {
                           '🎨 Theme System (Light / Dark)',
                         ],
                         isPositive: true,
+                        context: context
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -52,6 +52,7 @@ class BuiltVsBrokeMeScreen extends StatelessWidget {
                           '🧩 Platform-Specific Bugs',
                         ],
                         isPositive: false,
+                        context: context
                       ),
                     ),
                   ],
@@ -60,7 +61,6 @@ class BuiltVsBrokeMeScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 
@@ -69,7 +69,10 @@ class BuiltVsBrokeMeScreen extends StatelessWidget {
     required String subtitle,
     required List<String> items,
     required bool isPositive,
+    required BuildContext context
   }) {
+    final colors = Theme.of(context).extension<CustomColors>()!;
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
@@ -112,7 +115,7 @@ class BuiltVsBrokeMeScreen extends StatelessWidget {
         padding: const EdgeInsets.all(2.5),
         child: Container(
           decoration: BoxDecoration(
-            color: const Color(0xFF0A0E27),
+            color: colors.background,
             borderRadius: BorderRadius.circular(22),
           ),
           padding: const EdgeInsets.all(24),
@@ -123,8 +126,8 @@ class BuiltVsBrokeMeScreen extends StatelessWidget {
                 title,
                 style: TextStyle(
                   color: isPositive
-                      ? const Color(0xFF00FF87)
-                      : const Color(0xFFFF006E),
+                      ? colors.neonAccent
+                      : colors.neonSecondary,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -133,7 +136,7 @@ class BuiltVsBrokeMeScreen extends StatelessWidget {
               Text(
                 subtitle,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: colors.textSecondary,
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
                 ),
@@ -147,8 +150,8 @@ class BuiltVsBrokeMeScreen extends StatelessWidget {
                     Icon(
                       isPositive ? Icons.check : Icons.close,
                       color: isPositive
-                          ? const Color(0xFF00FF87)
-                          : const Color(0xFFFF006E),
+                          ? colors.neonAccent
+                          : colors.neonSecondary,
                       size: 20,
                     ),
                     const SizedBox(width: 12),
@@ -156,7 +159,6 @@ class BuiltVsBrokeMeScreen extends StatelessWidget {
                       child: Text(
                         item,
                         style: const TextStyle(
-                          color: Colors.white,
                           fontSize: 16,
                         ),
                       ),

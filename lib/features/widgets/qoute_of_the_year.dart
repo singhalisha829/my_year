@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../core/theme/theme_extension.dart';
 import '../../core/theme/theme_service.dart';
 
 class QuotesFromTheYearScreen extends StatefulWidget {
@@ -116,11 +117,9 @@ class _QuotesFromTheYearScreenState extends State<QuotesFromTheYearScreen>
 
   @override
   Widget build(BuildContext context) {
-    final themeService = GetIt.instance<ThemeService>();
+    final colors = Theme.of(context).extension<CustomColors>()!;
 
-    return Scaffold(
-      backgroundColor: themeService.colors.background,
-      body: SafeArea(
+    return SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Column(
@@ -129,7 +128,6 @@ class _QuotesFromTheYearScreenState extends State<QuotesFromTheYearScreen>
               const Text(
                 'Quotes From The Year',
                 style: TextStyle(
-                  color: Colors.white,
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),
@@ -138,7 +136,7 @@ class _QuotesFromTheYearScreenState extends State<QuotesFromTheYearScreen>
               Text(
                 'Funny internal thoughts',
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.6),
+                  color: colors.textSecondary,
                   fontSize: 16,
                   fontStyle: FontStyle.italic,
                 ),
@@ -161,19 +159,20 @@ class _QuotesFromTheYearScreenState extends State<QuotesFromTheYearScreen>
             ],
           ),
         ),
-      ),
     );
   }
 
   Widget _buildQuoteCard(QuoteData quote, int index) {
+    final colors = Theme.of(context).extension<CustomColors>()!;
+
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            const Color(0xFF00F5FF).withOpacity(0.15),
-            const Color(0xFF00F5FF).withOpacity(0.05),
+            colors.neonPrimary.withOpacity(0.15),
+            colors.neonPrimary.withOpacity(0.05),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -181,11 +180,11 @@ class _QuotesFromTheYearScreenState extends State<QuotesFromTheYearScreen>
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           width: 2,
-          color: const Color(0xFF00F5FF),
+          color: colors.neonPrimary,
         ),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF00F5FF).withOpacity(0.4),
+            color: colors.neonPrimary.withOpacity(0.4),
             blurRadius: 20,
             spreadRadius: 2,
           ),
@@ -208,16 +207,16 @@ class _QuotesFromTheYearScreenState extends State<QuotesFromTheYearScreen>
                     vertical: 6,
                   ),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF00F5FF).withOpacity(0.2),
+                    color: colors.neonPrimary.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                      color: const Color(0xFF00F5FF).withOpacity(0.5),
+                      color: colors.neonPrimary.withOpacity(0.5),
                     ),
                   ),
                   child: Text(
                     quote.category,
-                    style: const TextStyle(
-                      color: Color(0xFF00F5FF),
+                    style:  TextStyle(
+                      color: colors.neonPrimary,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'monospace',
@@ -231,7 +230,6 @@ class _QuotesFromTheYearScreenState extends State<QuotesFromTheYearScreen>
           Text(
             '"${quote.quote}"',
             style: const TextStyle(
-              color: Colors.white,
               fontSize: 18,
               fontWeight: FontWeight.w600,
               height: 1.4,
@@ -241,18 +239,18 @@ class _QuotesFromTheYearScreenState extends State<QuotesFromTheYearScreen>
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: const Color(0xFF00F5FF).withOpacity(0.08),
+              color: colors.neonPrimary.withOpacity(0.08),
               borderRadius: BorderRadius.circular(8),
               border: Border.all(
-                color: const Color(0xFF00F5FF).withOpacity(0.2),
+                color: colors.neonPrimary.withOpacity(0.2),
               ),
             ),
             child: Row(
               children: [
-                const Text(
+                 Text(
                   '→ ',
                   style: TextStyle(
-                    color: Color(0xFF00F5FF),
+                    color: colors.neonPrimary,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../core/theme/theme_extension.dart';
 import '../../core/theme/theme_service.dart';
 
 class LearningsPage extends StatelessWidget {
@@ -9,7 +10,7 @@ class LearningsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = GetIt.instance<ThemeService>();
+    final colors = Theme.of(context).extension<CustomColors>()!;
 
     return SafeArea(
       child: Padding(
@@ -22,7 +23,6 @@ class LearningsPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
               ),
             ),
             Text(
@@ -30,7 +30,7 @@ class LearningsPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: themeService.colors.textSecondary,
+                color: colors.textSecondary,
               ),
             ),
             const SizedBox(height: 24),
@@ -44,7 +44,7 @@ class LearningsPage extends StatelessWidget {
                   WidgetCard(
                     title: '🧪 Write Tests Earlier',
                     caption: 'Tests don’t slow you down — they stop you from breaking momentum.',
-                    borderColor: themeService.colors.neonPrimary,
+                    borderColor: colors.neonPrimary,
                     content: const [
                       'Writing tests early would have:'
                       '>> Clarified edge cases before bugs appeared',
@@ -55,7 +55,7 @@ class LearningsPage extends StatelessWidget {
                   WidgetCard(
                     title: '🔁 Refactor in Small Increments',
                     caption: 'Refactoring isn’t an event. It’s a habit.',
-                    borderColor: themeService.colors.neonYellow,
+                    borderColor: colors.neonYellow,
                     content: const [
                       'Smaller, continuous refactors would have:'
                       '>> Reduced merge conflicts',
@@ -66,7 +66,7 @@ class LearningsPage extends StatelessWidget {
                   WidgetCard(
                     title: '⏳ Estimate with Buffers',
                     caption: 'If I think it’ll take a day, it probably needs two.',
-                    borderColor: themeService.colors.neonSecondary,
+                    borderColor: colors.neonSecondary,
                     content: const [
                       'I consistently underestimated:'
                       '>> Edge cases'
@@ -77,7 +77,7 @@ class LearningsPage extends StatelessWidget {
                   WidgetCard(
                     title: '🪵 Log Everything',
                     caption: 'Logs are your future self asking for help.',
-                    borderColor: themeService.colors.neonAccent,
+                    borderColor: colors.neonAccent,
                     content: const [
                       'Better logging would have:',
                       '>> Explained silent failures',
@@ -88,7 +88,7 @@ class LearningsPage extends StatelessWidget {
                   WidgetCard(
                     title: '📚 Read the Docs Before the Panic',
                     caption: 'Docs aren’t optional. They’re a shortcut.',
-                    borderColor: themeService.colors.neonPurple,
+                    borderColor: colors.neonPurple,
                     content: const [
                       'Earlier documentation reading would have:',
                       '>> Saved hours of trial and error',
@@ -104,7 +104,7 @@ class LearningsPage extends StatelessWidget {
                 "Next year isn’t about doing more —\nit’s about doing things right earlier.",
                 style: TextStyle(
                   fontSize: 15,
-                  color: themeService.colors.textSecondary,
+                  color: colors.textSecondary,
                 ),
               ),
             ),
@@ -131,7 +131,7 @@ class WidgetCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeService = GetIt.instance<ThemeService>();
+    final colors = Theme.of(context).extension<CustomColors>()!;
 
     return GestureDetector(
       onTap: () {
@@ -147,7 +147,7 @@ class WidgetCard extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: themeService.colors.background,
+          color: colors.background,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: borderColor, width: 3),
           boxShadow: [
@@ -169,7 +169,7 @@ class WidgetCard extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: themeService.colors.textPrimary,
+                  color: colors.textPrimary,
                 ),
               ),
 
@@ -178,7 +178,7 @@ class WidgetCard extends StatelessWidget {
                 caption,
                 style: TextStyle(
                   fontSize: 11,
-                  color: Colors.white.withOpacity(0.9),
+                  color: colors.textSecondary,
                   fontStyle: FontStyle.italic,
                 ),
               ),
