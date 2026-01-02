@@ -22,7 +22,6 @@ class NextYearFocusPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
               ),
             ),
             const SizedBox(height: 24),
@@ -137,6 +136,7 @@ class WidgetCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: borderColor, width: 3),
           boxShadow: [
+            if(themeService.currentTheme.name =='dark')
             BoxShadow(
               color: borderColor.withOpacity(0.6),
               blurRadius: 20,
@@ -212,6 +212,7 @@ class CardDetailDialog extends StatelessWidget {
           color: themeService.colors.background.withAlpha(200),
           border: Border.all(color: borderColor, width: 4),
           boxShadow: [
+            if(themeService.currentTheme.name =='dark')
             BoxShadow(
               color: borderColor.withOpacity(0.6),
               blurRadius: 20,
@@ -243,7 +244,7 @@ class CardDetailDialog extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 16,
                             fontStyle: FontStyle.italic,
-                            color: Colors.white.withOpacity(0.9),
+                            color: themeService.colors.textMuted,
                           ),
                         ),
                       ],

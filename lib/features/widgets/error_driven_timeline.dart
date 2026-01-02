@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../core/theme/theme_extension.dart';
+import '../../core/theme/theme_service.dart';
 
 class ErrorDrivenTimelineCardsPage extends StatelessWidget {
   const ErrorDrivenTimelineCardsPage({super.key});
@@ -171,6 +173,7 @@ class WidgetCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).extension<CustomColors>()!;
+    final themeService = GetIt.instance<ThemeService>();
 
     return GestureDetector(
       onTap: () {
@@ -191,6 +194,7 @@ class WidgetCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: borderColor, width: 3),
           boxShadow: [
+            if(themeService.currentTheme.name == 'dark')
             BoxShadow(
               color: borderColor.withOpacity(0.6),
               blurRadius: 20,
@@ -249,6 +253,7 @@ class CardDetailDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).extension<CustomColors>()!;
+    final themeService = GetIt.instance<ThemeService>();
 
     return Dialog(
       child: Container(
@@ -258,6 +263,7 @@ class CardDetailDialog extends StatelessWidget {
           color: colors.background.withAlpha(200),
           border: Border.all(color: borderColor, width: 4),
           boxShadow: [
+            if(themeService.currentTheme.name == 'dark')
             BoxShadow(
               color: borderColor.withOpacity(0.6),
               blurRadius: 20,
@@ -289,7 +295,7 @@ class CardDetailDialog extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 16,
                             fontStyle: FontStyle.italic,
-                            color: Colors.white.withOpacity(0.9),
+                            color: colors.textMuted,
                           ),
                         ),
                       ],

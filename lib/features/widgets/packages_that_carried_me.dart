@@ -180,7 +180,13 @@ class _PackagesThatCarriedMeScreenState
     super.dispose();
   }
 
-  void _showPackageDetails(PackageData package, Color backgroundColor,Color textColor,Color iconColor) {
+  void _showPackageDetails(
+      PackageData package,
+      Color backgroundColor,
+      Color textColor,
+      Color iconColor,
+      bool isDarkMode)
+  {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -204,6 +210,7 @@ class _PackagesThatCarriedMeScreenState
                 color: textColor,
               ),
               boxShadow: [
+                if(isDarkMode)
                 BoxShadow(
                   color: textColor.withOpacity(0.5),
                   blurRadius: 30,
@@ -378,9 +385,10 @@ class _PackagesThatCarriedMeScreenState
 
   Widget _buildPackageCard(PackageData package, int index, BuildContext context) {
     final colors = Theme.of(context).extension<CustomColors>()!;
+    final themeService = GetIt.instance<ThemeService>();
 
     return GestureDetector(
-      onTap: () => _showPackageDetails(package,colors.background,colors.neonPrimary,colors.textMuted),
+      onTap: () => _showPackageDetails(package,colors.background,colors.neonPrimary,colors.textMuted,themeService.currentTheme.name == 'dark'),
       child: Container(
         margin: const EdgeInsets.only(bottom: 20),
         padding: const EdgeInsets.all(20),
@@ -399,6 +407,7 @@ class _PackagesThatCarriedMeScreenState
             color: colors.neonPrimary,
           ),
           boxShadow: [
+            if(themeService.currentTheme.name =='dark')
             BoxShadow(
               color: colors.neonPrimary.withOpacity(0.4),
               blurRadius: 20,

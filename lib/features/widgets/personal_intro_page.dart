@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import '../../../core/theme/theme_service.dart';
+import '../../core/theme/theme_extension.dart';
 
 class PersonalIntroPage extends StatefulWidget {
   const PersonalIntroPage({super.key});
@@ -120,7 +121,7 @@ class _PersonalIntroPageState extends State<PersonalIntroPage> {
           ),
 
           const SizedBox(height: 48),
-          _buildClosing(),
+          _buildClosing(context),
         ],
       ),
     );
@@ -145,7 +146,7 @@ class _PersonalIntroPageState extends State<PersonalIntroPage> {
           style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.w200,
-            color: Colors.white.withOpacity(0.7),
+            color: theme.colors.textSecondary,
             letterSpacing: 1.2,
           ),
           textAlign: TextAlign.center,
@@ -163,6 +164,7 @@ class _PersonalIntroPageState extends State<PersonalIntroPage> {
     required Color color,
   }) {
     final isActive = _activeCardIndex == index;
+    final themeService = GetIt.instance<ThemeService>();
 
     return AnimatedContainer(
       key: key,
@@ -175,7 +177,7 @@ class _PersonalIntroPageState extends State<PersonalIntroPage> {
           color: isActive ? color : color.withOpacity(0.25),
           width: isActive ? 2.5 : 1.5,
         ),
-        boxShadow: isActive
+        boxShadow: isActive && themeService.currentTheme.name == 'dark'
             ? [
           BoxShadow(
             color: color.withOpacity(0.35),
@@ -205,7 +207,7 @@ class _PersonalIntroPageState extends State<PersonalIntroPage> {
                   style: TextStyle(
                     fontSize: 14,
                     fontStyle: FontStyle.italic,
-                    color: Colors.white.withOpacity(0.6),
+                    color: themeService.colors.textSecondary.withOpacity(0.6),
                   ),
                 ),
               ],
@@ -227,13 +229,15 @@ class _PersonalIntroPageState extends State<PersonalIntroPage> {
     );
   }
 
-  Widget _buildClosing() {
+  Widget _buildClosing(BuildContext context) {
+    final colors = Theme.of(context).extension<CustomColors>()!;
+
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
+        color: colors.textPrimary.withOpacity(0.05),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.white.withOpacity(0.1)),
+        border: Border.all(color: colors.textPrimary.withOpacity(0.1)),
       ),
       child: Text(
         'This was my year —\nboth in code and beyond it.',
@@ -241,7 +245,7 @@ class _PersonalIntroPageState extends State<PersonalIntroPage> {
         style: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.w300,
-          color: Colors.white.withOpacity(0.8),
+          color: colors.textPrimary.withOpacity(0.8),
           height: 1.8,
         ),
       ),

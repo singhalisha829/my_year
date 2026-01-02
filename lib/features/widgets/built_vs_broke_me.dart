@@ -72,40 +72,41 @@ class BuiltVsBrokeMeScreen extends StatelessWidget {
     required BuildContext context
   }) {
     final colors = Theme.of(context).extension<CustomColors>()!;
+    final themeService = GetIt.instance<ThemeService>();
 
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
-        boxShadow: [
+        boxShadow: themeService.currentTheme.name == 'dark'?[
           BoxShadow(
             color: isPositive
-                ? const Color(0xFF00FF87).withOpacity(0.5)
-                : const Color(0xFFFF006E).withOpacity(0.5),
+                ? colors.neonAccent.withOpacity(0.5)
+                : colors.neonSecondary.withOpacity(0.5),
             blurRadius: 20,
             spreadRadius: 2,
           ),
           BoxShadow(
             color: isPositive
-                ? const Color(0xFF60EFFF).withOpacity(0.3)
+                ? colors.neonPrimary.withOpacity(0.3)
                 : const Color(0xFFFF8500).withOpacity(0.3),
             blurRadius: 30,
             spreadRadius: 1,
           ),
-        ],
+        ]:[],
       ),
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: isPositive
                 ? [
-              const Color(0xFF00FF87),
-              const Color(0xFF60EFFF),
-              const Color(0xFF00FF87),
+              colors.neonAccent,
+              colors.neonPrimary,
+              colors.neonAccent.withOpacity(0.5),
             ]
                 : [
               const Color(0xFFFF006E),
               const Color(0xFFFF8500),
-              const Color(0xFFFFD600),
+              colors.neonYellow,
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,

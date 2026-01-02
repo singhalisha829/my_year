@@ -164,6 +164,7 @@ class _QuotesFromTheYearScreenState extends State<QuotesFromTheYearScreen>
 
   Widget _buildQuoteCard(QuoteData quote, int index) {
     final colors = Theme.of(context).extension<CustomColors>()!;
+    final themeService = GetIt.instance<ThemeService>();
 
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
@@ -183,6 +184,7 @@ class _QuotesFromTheYearScreenState extends State<QuotesFromTheYearScreen>
           color: colors.neonPrimary,
         ),
         boxShadow: [
+          if(themeService.currentTheme.name == 'dark')
           BoxShadow(
             color: colors.neonPrimary.withOpacity(0.4),
             blurRadius: 20,
@@ -259,7 +261,7 @@ class _QuotesFromTheYearScreenState extends State<QuotesFromTheYearScreen>
                   child: Text(
                     quote.context,
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.8),
+                      color: colors.textMuted,
                       fontSize: 14,
                       fontStyle: FontStyle.italic,
                       fontFamily: 'monospace',
