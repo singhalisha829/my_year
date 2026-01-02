@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
           // Content Area with AnimatedSwitcher
           SizedBox(
-            height: screenHeight * 0.75,
+            height: screenHeight * 0.77,
             child: AnimatedSwitcher(
               duration: const Duration(milliseconds: 400),
               switchInCurve: _currentSection == WrapSection.professional

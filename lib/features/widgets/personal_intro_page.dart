@@ -217,7 +217,7 @@ class _PersonalIntroPageState extends State<PersonalIntroPage> {
             ),
             child: Image.asset(
               imagePath,
-              height: 500,
+              height: 600,
               width: double.infinity,
               fit: BoxFit.cover,
             ),

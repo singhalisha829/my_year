@@ -20,7 +20,7 @@ class LearningsPage extends StatelessWidget {
             const Text(
               'What I’d Do Differently',
               style: TextStyle(
-                fontSize: 32,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -28,7 +28,7 @@ class LearningsPage extends StatelessWidget {
             Text(
               'This year wasn’t just about building apps.',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: themeService.colors.textSecondary,
               ),

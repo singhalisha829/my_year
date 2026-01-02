@@ -62,131 +62,133 @@ class _TimeSpentWhereScreenState extends State<TimeSpentWhereScreen> {
     return Scaffold(
       backgroundColor: themeService.colors.background,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            children: [
-               Text(
-                'Where My Time Went',
-                style: TextStyle(
-                  color: themeService.colors.textPrimary,
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 60),
-              GestureDetector(
-                onTapDown: (details) {
-                  _handleTap(timeData,details.localPosition);
-                },
-                child: SizedBox(
-                  height: 280,
-                  width: 280,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      CustomPaint(
-                        size: const Size(280, 280),
-                        painter: DonutChartPainter(
-                          timeData,
-                          selectedIndex: selectedIndex,
-                        ),
-                      ),
-                      // Percentage labels on the chart
-                      ...List.generate(timeData.length, (index) {
-                        return _buildPercentageLabel(timeData,index);
-                      }),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 60),
-              if (selectedIndex != null)
-                AnimatedOpacity(
-                  opacity: selectedIndex != null ? 1.0 : 0.0,
-                  duration: const Duration(milliseconds: 300),
-                  child: Container(
-                    padding: const EdgeInsets.all(24),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.05),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: timeData[selectedIndex!].color.withOpacity(0.5),
-                        width: 2,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: timeData[selectedIndex!].color.withOpacity(0.3),
-                          blurRadius: 20,
-                          spreadRadius: 2,
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 20,
-                              height: 20,
-                              decoration: BoxDecoration(
-                                color: timeData[selectedIndex!].color,
-                                shape: BoxShape.circle,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: timeData[selectedIndex!]
-                                        .color
-                                        .withOpacity(0.5),
-                                    blurRadius: 8,
-                                    spreadRadius: 2,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Text(
-                              timeData[selectedIndex!].label,
-                              style:  TextStyle(
-                                color: themeService.colors.textPrimary,
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          '${timeData[selectedIndex!].percentage}%',
-                          style: TextStyle(
-                            color: timeData[selectedIndex!].color,
-                            fontSize: 48,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Center(
-                          child: Text(
-                            '"${timeData[selectedIndex!].caption}"',
-                            style: TextStyle(
-                              color: Colors.white.withOpacity(0.6),
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              else
-                Text(
-                  'Tap on a segment to see details',
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              children: [
+                 Text(
+                  'Where My Time Went',
                   style: TextStyle(
-                    color: themeService.colors.textMuted,
-                    fontSize: 18,
+                    color: themeService.colors.textPrimary,
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-            ],
+                const SizedBox(height: 40),
+                GestureDetector(
+                  onTapDown: (details) {
+                    _handleTap(timeData,details.localPosition);
+                  },
+                  child: SizedBox(
+                    height: 280,
+                    width: 280,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        CustomPaint(
+                          size: const Size(280, 280),
+                          painter: DonutChartPainter(
+                            timeData,
+                            selectedIndex: selectedIndex,
+                          ),
+                        ),
+                        // Percentage labels on the chart
+                        ...List.generate(timeData.length, (index) {
+                          return _buildPercentageLabel(timeData,index);
+                        }),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 40),
+                if (selectedIndex != null)
+                  AnimatedOpacity(
+                    opacity: selectedIndex != null ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 500),
+                    child: Container(
+                      padding: const EdgeInsets.all(24),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.05),
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: timeData[selectedIndex!].color.withOpacity(0.5),
+                          width: 2,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: timeData[selectedIndex!].color.withOpacity(0.3),
+                            blurRadius: 20,
+                            spreadRadius: 2,
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 15,
+                                height: 15,
+                                decoration: BoxDecoration(
+                                  color: timeData[selectedIndex!].color,
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: timeData[selectedIndex!]
+                                          .color
+                                          .withOpacity(0.5),
+                                      blurRadius: 8,
+                                      spreadRadius: 2,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Text(
+                                timeData[selectedIndex!].label,
+                                style:  TextStyle(
+                                  color: themeService.colors.textPrimary,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            '${timeData[selectedIndex!].percentage}%',
+                            style: TextStyle(
+                              color: timeData[selectedIndex!].color,
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Center(
+                            child: Text(
+                              '"${timeData[selectedIndex!].caption}"',
+                              style: TextStyle(
+                                color: Colors.white.withOpacity(0.6),
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                else
+                  Text(
+                    'Tap on a segment to see details',
+                    style: TextStyle(
+                      color: themeService.colors.textMuted,
+                      fontSize: 18,
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
