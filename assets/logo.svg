@@ -1,0 +1,69 @@
+<svg
+    width="1024"
+    height="1024"
+    viewBox="0 0 1024 1024"
+    xmlns="http://www.w3.org/2000/svg"
+>
+    <defs>
+        <!-- Background -->
+        <linearGradient id="bgGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0a0e27"/>
+            <stop offset="100%" stop-color="#11143a"/>
+        </linearGradient>
+
+        <!-- YA Gradient -->
+        <linearGradient id="neonGradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#00e5ff"/>
+            <stop offset="50%" stop-color="#ff0080"/>
+            <stop offset="100%" stop-color="#ccff00"/>
+        </linearGradient>
+
+        <!-- Glow -->
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="20" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Rounded background -->
+    <rect
+        x="64"
+        y="64"
+        width="896"
+        height="896"
+        rx="180"
+        fill="url(#bgGradient)"
+    />
+
+    <!-- YA Text -->
+    <text
+        x="512"
+        y="520"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        font-size="360"
+        font-weight="800"
+        font-family="IBMPlexSans, Poppins, Arial, sans-serif"
+        fill="url(#neonGradient)"
+        filter="url(#glow)"
+    >
+        YA
+    </text>
+
+    <!-- App Name -->
+    <text
+        x="512"
+        y="720"
+        text-anchor="middle"
+        font-size="88"
+        font-weight="600"
+        font-family="IBMPlexSans, Poppins, Arial, sans-serif"
+        fill="#ffffff"
+        opacity="0.9"
+    >
+        Year of Alisha
+    </text>
+</svg>
