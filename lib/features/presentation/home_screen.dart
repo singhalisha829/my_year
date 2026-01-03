@@ -17,6 +17,7 @@ import '../widgets/where_my_time_went.dart';
 
 // Personal section imports (create these screens)
 import '../widgets/personal_intro_page.dart';
+import '../widgets/year_as_flutter_release.dart';
 
 enum WrapSection { professional, personal }
 
@@ -43,6 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const BuiltVsBrokeMeScreen(),
     const PackagesThatCarriedMeScreen(),
     const QuotesFromTheYearScreen(),
+    const YearReleaseScreen(),
     const LearningsPage(),
     const NextYearFocusPage(),
     // const WidgetCardsPage(),

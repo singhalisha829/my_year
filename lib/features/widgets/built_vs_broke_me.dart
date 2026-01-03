@@ -34,8 +34,9 @@ class BuiltVsBrokeMeScreen extends StatelessWidget {
                         subtitle: 'The screens that made me feel like I knew what I was doing',
                         items: [
                           '📹 Video Call Preview & Entry Flow',
-                          '✏️ Custom Drawing Widget',
+                          '✏️ Advanced Custom Drawing Widget',
                           '🎨 Theme System (Light / Dark)',
+                          '🌍 Localization & Internationalization'
                         ],
                         isPositive: true,
                         context: context

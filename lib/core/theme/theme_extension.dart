@@ -19,6 +19,24 @@ class CustomColors extends ThemeExtension<CustomColors> {
   final Color shadowSoft;
   final Color shadowStrong;
 
+  final Color releaseBlueStart;
+  final Color releaseBlueEnd;
+
+  final Color releasePinkStart;
+  final Color releasePinkEnd;
+
+  final Color releaseCyanStart;
+  final Color releaseCyanEnd;
+
+  final Color releaseGreenStart;
+  final Color releaseGreenEnd;
+
+  final Color releaseYellowStart;
+  final Color releaseYellowEnd;
+
+  final Color releaseIndigoStart;
+  final Color releaseIndigoEnd;
+
   const CustomColors({
     required this.background,
     required this.neonPrimary,
@@ -31,7 +49,19 @@ class CustomColors extends ThemeExtension<CustomColors> {
     required this.shadowStrong,
     required this.neonOrange,
     required this.neonPurple,
-    required this.neonYellow
+    required this.neonYellow,
+    required this.releaseBlueStart,
+    required this.releaseBlueEnd,
+    required this.releasePinkStart,
+    required this.releasePinkEnd,
+    required this.releaseCyanStart,
+    required this.releaseCyanEnd,
+    required this.releaseGreenStart,
+    required this.releaseGreenEnd,
+    required this.releaseYellowStart,
+    required this.releaseYellowEnd,
+    required this.releaseIndigoStart,
+    required this.releaseIndigoEnd,
   });
 
   // Light theme factory
@@ -50,7 +80,20 @@ class CustomColors extends ThemeExtension<CustomColors> {
     shadowStrong: AppPalette.shadowStrong,
     neonYellow: AppPalette.neonYellowLight,
     neonPurple: AppPalette.neonPurpleLight,
-    neonOrange: AppPalette.neonOrangeLight,  );
+    neonOrange: AppPalette.neonOrangeLight,
+    releaseBlueStart: AppPalette.releaseBlueStartLight,
+    releaseBlueEnd: AppPalette.releaseBlueEndLight,
+    releasePinkStart: AppPalette.releasePinkStartLight,
+    releasePinkEnd: AppPalette.releasePinkEndLight,
+    releaseCyanStart: AppPalette.releaseCyanStartLight,
+    releaseCyanEnd: AppPalette.releaseCyanEndLight,
+    releaseGreenStart: AppPalette.releaseGreenStartLight,
+    releaseGreenEnd: AppPalette.releaseGreenEndLight,
+    releaseYellowStart: AppPalette.releaseYellowStartLight,
+    releaseYellowEnd: AppPalette.releaseYellowEndLight,
+    releaseIndigoStart: AppPalette.releaseIndigoStartLight,
+    releaseIndigoEnd: AppPalette.releaseIndigoEndLight,
+  );
 
   // Dark theme factory
   factory CustomColors.dark() => const CustomColors(
@@ -69,6 +112,18 @@ class CustomColors extends ThemeExtension<CustomColors> {
     neonOrange: AppPalette.neonOrange,
     neonPurple: AppPalette.neonPurple,
     neonYellow: AppPalette.neonYellow,
+    releaseBlueStart: AppPalette.releaseBlueStart,
+    releaseBlueEnd: AppPalette.releaseBlueEnd,
+    releasePinkStart: AppPalette.releasePinkStart,
+    releasePinkEnd: AppPalette.releasePinkEnd,
+    releaseCyanStart: AppPalette.releaseCyanStart,
+    releaseCyanEnd: AppPalette.releaseCyanEnd,
+    releaseGreenStart: AppPalette.releaseGreenStart,
+    releaseGreenEnd: AppPalette.releaseGreenEnd,
+    releaseYellowStart: AppPalette.releaseYellowStart,
+    releaseYellowEnd: AppPalette.releaseYellowEnd,
+    releaseIndigoStart: AppPalette.releaseIndigoStart,
+    releaseIndigoEnd: AppPalette.releaseIndigoEnd,
   );
 
 
@@ -85,7 +140,19 @@ class CustomColors extends ThemeExtension<CustomColors> {
     Color? shadowStrong,
     Color? neonYellow,
     Color? neonPurple,
-    Color? neonOrange
+    Color? neonOrange,
+    Color? releaseBlueStart,
+    Color? releaseBlueEnd,
+    Color? releasePinkStart,
+    Color? releasePinkEnd,
+    Color? releaseCyanStart,
+    Color? releaseCyanEnd,
+    Color? releaseGreenStart,
+    Color? releaseGreenEnd,
+    Color? releaseYellowStart,
+    Color? releaseYellowEnd,
+    Color? releaseIndigoStart,
+    Color? releaseIndigoEnd,
   }) {
     return CustomColors(
       background: background ?? this.background,
@@ -99,7 +166,20 @@ class CustomColors extends ThemeExtension<CustomColors> {
       shadowStrong: shadowStrong ?? this.shadowStrong,
       neonOrange: neonOrange ?? this.neonOrange,
       neonPurple: neonPurple ?? this.neonPurple,
-      neonYellow: neonYellow ?? this.neonYellow
+      neonYellow: neonYellow ?? this.neonYellow,
+      releaseBlueStart: releaseBlueStart ?? this.releaseBlueStart,
+      releaseBlueEnd: releaseBlueEnd ?? this.releaseBlueEnd,
+      releasePinkStart: releasePinkStart ?? this.releasePinkStart,
+      releasePinkEnd: releasePinkEnd ?? this.releasePinkEnd,
+      releaseCyanStart: releaseCyanStart ?? this.releaseCyanStart,
+      releaseCyanEnd: releaseCyanEnd ?? this.releaseCyanEnd,
+      releaseGreenStart: releaseGreenStart ?? this.releaseGreenStart,
+      releaseGreenEnd: releaseGreenEnd ?? this.releaseGreenEnd,
+      releaseYellowStart: releaseYellowStart ?? this.releaseYellowStart,
+      releaseYellowEnd: releaseYellowEnd ?? this.releaseYellowEnd,
+      releaseIndigoStart: releaseIndigoStart ?? this.releaseIndigoStart,
+      releaseIndigoEnd: releaseIndigoEnd ?? this.releaseIndigoEnd,
+
     );
   }
 
@@ -120,6 +200,30 @@ class CustomColors extends ThemeExtension<CustomColors> {
       neonYellow: Color.lerp(neonYellow, other.neonYellow, t)!,
       neonPurple: Color.lerp(neonPurple, other.neonPurple, t)!,
       neonOrange: Color.lerp(neonOrange, other.neonOrange, t)!,
+      releaseBlueStart:
+      Color.lerp(releaseBlueStart, other.releaseBlueStart, t)!,
+      releaseBlueEnd:
+      Color.lerp(releaseBlueEnd, other.releaseBlueEnd, t)!,
+      releasePinkStart:
+      Color.lerp(releasePinkStart, other.releasePinkStart, t)!,
+      releasePinkEnd:
+      Color.lerp(releasePinkEnd, other.releasePinkEnd, t)!,
+      releaseCyanStart:
+      Color.lerp(releaseCyanStart, other.releaseCyanStart, t)!,
+      releaseCyanEnd:
+      Color.lerp(releaseCyanEnd, other.releaseCyanEnd, t)!,
+      releaseGreenStart:
+      Color.lerp(releaseGreenStart, other.releaseGreenStart, t)!,
+      releaseGreenEnd:
+      Color.lerp(releaseGreenEnd, other.releaseGreenEnd, t)!,
+      releaseYellowStart:
+      Color.lerp(releaseYellowStart, other.releaseYellowStart, t)!,
+      releaseYellowEnd:
+      Color.lerp(releaseYellowEnd, other.releaseYellowEnd, t)!,
+      releaseIndigoStart:
+      Color.lerp(releaseIndigoStart, other.releaseIndigoStart, t)!,
+      releaseIndigoEnd:
+      Color.lerp(releaseIndigoEnd, other.releaseIndigoEnd, t)!,
     );
   }
 }
